@@ -148,37 +148,6 @@ $flash = getFlash();
             background: rgba(255, 255, 255, 0.02);
         }
 
-        /* Quill Dark Theme Overrides */
-        .ql-toolbar.ql-snow {
-            background: #1A1D23 !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
-            border-top-left-radius: 0.5rem;
-            border-top-right-radius: 0.5rem;
-        }
-
-        .ql-container.ql-snow {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
-            color: #d1d5db !important;
-            border-bottom-left-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-            min-height: 150px;
-            font-family: inherit;
-        }
-
-        .ql-snow .ql-stroke {
-            stroke: #9ca3af !important;
-        }
-
-        .ql-snow .ql-fill {
-            fill: #9ca3af !important;
-        }
-
-        .ql-snow.ql-toolbar button:hover .ql-stroke,
-        .ql-snow.ql-toolbar button.ql-active .ql-stroke {
-            stroke: #ffb204 !important;
-        }
-
         /* Preview Card Text Auto-Wrap */
         [id^="preview_"],
         .preview-text,
@@ -197,6 +166,32 @@ $flash = getFlash();
         textarea {
             resize: vertical;
             min-height: 100px;
+        }
+
+        /* Form Autocomplete Dark Theme */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active,
+        select:-webkit-autofill,
+        textarea:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px #161B22 inset !important;
+            -webkit-text-fill-color: #ffffff !important;
+            caret-color: #ffffff !important;
+            border-color: rgba(255, 178, 4, 0.3) !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        /* Select option dark */
+        select option {
+            background-color: #161B22 !important;
+            color: #ffffff !important;
+        }
+
+        /* Input placeholder */
+        input::placeholder,
+        textarea::placeholder {
+            color: #4B5563 !important;
         }
     </style>
 </head>
@@ -253,6 +248,23 @@ $flash = getFlash();
                     <span class="sidebar-text text-sm font-medium">Statistik</span>
                 </a>
 
+                <a href="contacts.php" class="sidebar-link flex items-center gap-3 px-4 py-3 text-gray-300 transition-colors <?php echo $currentPage === 'contacts' ? 'active' : ''; ?>">
+                    <span class="material-symbols-outlined text-xl">mail</span>
+                    <span class="sidebar-text text-sm font-medium">Pesan Kontak</span>
+                </a>
+
+                <div class="sidebar-heading px-4 mt-6 mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Pengaturan</div>
+
+                <a href="users.php" class="sidebar-link flex items-center gap-3 px-4 py-3 text-gray-300 transition-colors <?php echo $currentPage === 'users' ? 'active' : ''; ?>">
+                    <span class="material-symbols-outlined text-xl">group</span>
+                    <span class="sidebar-text text-sm font-medium">Kelola User</span>
+                </a>
+
+                <a href="settings.php" class="sidebar-link flex items-center gap-3 px-4 py-3 text-gray-300 transition-colors <?php echo $currentPage === 'settings' ? 'active' : ''; ?>">
+                    <span class="material-symbols-outlined text-xl">settings</span>
+                    <span class="sidebar-text text-sm font-medium">Pengaturan</span>
+                </a>
+
                 <div class="mt-8 px-4">
                     <a href="../" target="_blank" class="flex items-center gap-3 px-4 py-3 text-[10px] text-gray-400 hover:text-primary transition-colors border-t border-white/5 uppercase tracking-widest font-bold">
                         <span class="material-symbols-outlined text-lg">open_in_new</span>
@@ -282,9 +294,18 @@ $flash = getFlash();
                             <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">
                                 <?php echo strtoupper(substr($_SESSION['admin_name'] ?? 'A', 0, 1)); ?>
                             </div>
+                            <div class="hidden md:block text-left">
+                                <p class="text-xs font-medium text-white"><?php echo e($_SESSION['admin_name'] ?? 'Admin'); ?></p>
+                                <p class="text-[10px] text-gray-500 capitalize"><?php echo e($_SESSION['admin_role'] ?? 'administrator'); ?></p>
+                            </div>
                             <span class="material-symbols-outlined text-gray-500 text-lg">expand_more</span>
                         </button>
                         <div class="absolute right-0 top-full mt-2 w-48 bg-surface-dark rounded-xl shadow-2xl border border-white/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden">
+                            <!-- User Info (Mobile) -->
+                            <div class="md:hidden px-4 py-3 border-b border-white/5">
+                                <p class="text-sm font-medium text-white"><?php echo e($_SESSION['admin_name'] ?? 'Admin'); ?></p>
+                                <p class="text-[10px] text-gray-500 capitalize"><?php echo e($_SESSION['admin_role'] ?? 'administrator'); ?></p>
+                            </div>
                             <a href="logout.php" class="flex items-center gap-2 px-4 py-3 text-xs text-red-400 hover:bg-red-400/10 transition-colors">
                                 <span class="material-symbols-outlined text-lg">logout</span>
                                 <span>Keluar</span>
