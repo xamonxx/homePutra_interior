@@ -173,4 +173,4 @@ Landing page dan admin panel sudah responsive untuk:
 
 ## 📄 License
 
-© 2024 Home Putra Interior. All rights reserved.
+© 2026 Home Putra Interior. All rights reserved.
