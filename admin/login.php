@@ -75,9 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Admin Panel | Home Putra Interior</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../assets/css/material-symbols.css" rel="stylesheet">
+    <script src="../assets/js/tailwind.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -85,10 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     colors: {
                         primary: '#ffb204',
                         'primary-dark': '#e6a000',
-                        dark: '#1A1A1A',
+                        'background-dark': '#0B0D11',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
                     },
                 }
             }
@@ -96,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </script>
 </head>
 
-<body class="min-h-screen bg-dark flex items-center justify-center p-4 font-sans">
+<body class="min-h-screen bg-background-dark flex items-center justify-center p-4 font-sans text-gray-300">
     <!-- Background Pattern -->
     <div class="fixed inset-0 opacity-5">
         <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>

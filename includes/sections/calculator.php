@@ -1,10 +1,10 @@
 <!-- Calculator Section -->
-<section class="py-32 bg-background-dark relative overflow-hidden" id="calculator">
+<section class="py-20 md:py-32 bg-background-dark relative overflow-hidden" id="calculator">
     <!-- Background Gradient -->
     <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"></div>
 
     <div class="max-w-[1100px] mx-auto px-6 relative z-10">
-        <div class="grid md:grid-cols-2 gap-20 items-center">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <!-- Left Content -->
             <div data-aos="fade-right">
                 <span class="text-primary uppercase tracking-[0.4em] text-[10px] font-bold">Perencana Anggaran</span>
@@ -14,22 +14,28 @@
                 </p>
                 <ul class="space-y-6">
                     <li class="flex items-center gap-4 text-gray-300 font-light text-sm">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                         <span>Model harga transparan</span>
                     </li>
                     <li class="flex items-center gap-4 text-gray-300 font-light text-sm">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                         <span>Rincian material detail</span>
                     </li>
                     <li class="flex items-center gap-4 text-gray-300 font-light text-sm">
-                        <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
                         <span>Tanpa biaya konsultasi tersembunyi</span>
                     </li>
                 </ul>
             </div>
 
             <!-- Calculator Card -->
-            <div class="bg-surface-dark border border-white/10 rounded-sm p-10 shadow-2xl relative" data-aos="fade-left">
+            <div class="bg-surface-dark border border-white/10 rounded-sm p-6 sm:p-10 shadow-2xl relative" data-aos="fade-left">
                 <!-- Corner Decoration -->
                 <div class="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-primary/40"></div>
 
@@ -37,7 +43,7 @@
                     <!-- Room Type Select -->
                     <div>
                         <label class="block text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-3">Tipe Ruangan</label>
-                        <select id="room-type" class="w-full bg-[#1A1A1A] border border-white/10 rounded-sm text-white p-4 focus:ring-1 focus:ring-primary focus:border-primary text-sm font-medium outline-none transition-all">
+                        <select id="room-type" class="w-full bg-[#0B0D11] border border-white/10 rounded-sm text-white p-4 focus:ring-1 focus:ring-primary focus:border-primary text-sm font-medium outline-none transition-all">
                             <option value="living">Ruang Tamu</option>
                             <option value="kitchen">Dapur</option>
                             <option value="bedroom">Kamar Tidur Utama</option>
@@ -58,10 +64,10 @@
                     <!-- Finish Level -->
                     <div>
                         <label class="block text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-3">Tingkat Finishing</label>
-                        <div class="grid grid-cols-3 gap-3">
-                            <button id="finish-standard" class="finish-btn border border-white/10 rounded-sm py-3 text-[10px] uppercase tracking-widest text-gray-400 hover:border-primary hover:text-primary transition-colors font-bold" data-multiplier="1">Standar</button>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button id="finish-standard" class="finish-btn border border-white/10 rounded-sm py-3 text-[10px] uppercase tracking-widest text-gray-400 hover:border-primary hover:text-primary transition-all font-bold" data-multiplier="1">Standar</button>
                             <button id="finish-premium" class="finish-btn active border border-primary bg-primary/10 rounded-sm py-3 text-[10px] uppercase tracking-widest text-primary font-bold" data-multiplier="1.5">Premium</button>
-                            <button id="finish-luxury" class="finish-btn border border-white/10 rounded-sm py-3 text-[10px] uppercase tracking-widest text-gray-400 hover:border-primary hover:text-primary transition-colors font-bold" data-multiplier="2.2">Mewah</button>
+                            <button id="finish-luxury" class="finish-btn border border-white/10 rounded-sm py-3 text-[10px] uppercase tracking-widest text-gray-400 hover:border-primary hover:text-primary transition-all font-bold" data-multiplier="2.2">Mewah</button>
                         </div>
                     </div>
 

@@ -16,7 +16,7 @@ require_once __DIR__ . '/includes/header.php';
 ?>
 
 <!-- Hero Section -->
-<header class="hero-section relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+<header class="hero-section relative min-h-screen flex items-center justify-center pt-24 md:pt-20 overflow-hidden">
     <!-- Background with Parallax -->
     <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-[#1A1A1A] z-10"></div>
@@ -34,7 +34,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
 
         <!-- Title -->
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.1] text-white" data-aos="fade-up" data-aos-delay="100">
+        <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-medium leading-[1.1] text-white" data-aos="fade-up" data-aos-delay="100">
             Mendefinisikan Ruang, <br />
             <span class="text-gold-gradient italic">Meningkatkan Gaya Hidup</span>
         </h1>
@@ -58,7 +58,9 @@ require_once __DIR__ . '/includes/header.php';
     <!-- Scroll Indicator -->
     <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-60" data-aos="fade-up" data-aos-delay="500">
         <span class="text-[9px] uppercase tracking-[0.4em] text-white">Scroll</span>
-        <span class="material-symbols-outlined text-white animate-bounce text-lg">keyboard_arrow_down</span>
+        <svg class="w-6 h-6 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7-7-7"></path>
+        </svg>
     </div>
 </header>
 
@@ -77,7 +79,7 @@ try {
 ?>
 <section class="border-y border-white/5 bg-[#171717]">
     <div class="max-w-[1200px] mx-auto px-6 py-12">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/5">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:divide-x divide-white/5">
             <?php if (!empty($statistics)): ?>
                 <?php foreach ($statistics as $index => $stat): ?>
                     <div class="flex flex-col items-center justify-center text-center gap-2" data-aos="fade-up" <?php echo $index > 0 ? 'data-aos-delay="' . ($index * 100) . '"' : ''; ?>>
@@ -146,7 +148,7 @@ $fallbackImages = [
     'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80',
 ];
 ?>
-<section class="py-32 bg-background-dark relative" id="portfolio">
+<section class="py-20 md:py-32 bg-background-dark relative" id="portfolio">
     <div class="max-w-[1200px] mx-auto px-6">
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -155,14 +157,16 @@ $fallbackImages = [
                 <h2 class="text-4xl md:text-6xl text-white mt-3 mb-5">Portfolio Pilihan</h2>
                 <p class="text-gray-400 max-w-md font-light leading-relaxed">Jelajahi koleksi proyek pilihan kami yang menampilkan komitmen kami pada keanggunan dan detail.</p>
             </div>
-            <button class="text-primary hover:text-white flex items-center gap-3 text-xs uppercase tracking-widest font-bold transition-colors group" data-aos="fade-left">
+            <a href="portfolio-all.php" class="text-primary hover:text-white flex items-center gap-3 text-xs uppercase tracking-widest font-bold transition-colors group" data-aos="fade-left">
                 Lihat Semua Proyek
-                <span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1">arrow_forward</span>
-            </button>
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
         </div>
 
         <!-- Portfolio Grid -->
-        <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <?php if (!empty($portfolios)): ?>
                 <?php foreach ($portfolios as $index => $portfolio): ?>
                     <?php
@@ -170,7 +174,7 @@ $fallbackImages = [
                     $delay = $index * 100;
                     ?>
                     <div class="group relative overflow-hidden rounded-sm break-inside-avoid cursor-pointer img-hover-zoom card-hover" data-aos="fade-up" <?php echo $delay > 0 ? 'data-aos-delay="' . $delay . '"' : ''; ?>>
-                        <img alt="<?php echo htmlspecialchars($portfolio['title']); ?>" class="w-full h-auto object-cover"
+                        <img alt="<?php echo htmlspecialchars($portfolio['title']); ?>" class="w-full aspect-[4/5] object-cover"
                             src="<?php echo htmlspecialchars($imageSrc); ?>" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
                             <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2"><?php echo htmlspecialchars($portfolio['category'] ?: 'Interior'); ?></span>

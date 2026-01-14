@@ -89,93 +89,172 @@ $pageTitle = 'Hero Section';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
-<div class="max-w-3xl mx-auto">
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 lg:p-6">
-        <h2 class="text-base lg:text-lg font-semibold text-gray-800 mb-4 lg:mb-6">Edit Hero Section</h2>
+<div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">view_carousel</span>
+            Pengaturan Hero Section
+        </h2>
+        <p class="text-gray-400 text-sm mt-1">Kelola tampilan utama di bagian paling atas landing page Anda.</p>
+    </div>
 
-        <form method="POST" enctype="multipart/form-data" class="space-y-4 lg:space-y-6">
-            <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+    <form method="POST" enctype="multipart/form-data" class="space-y-6">
+        <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
 
-            <!-- Preview -->
-            <?php if (!empty($hero['background_image'])): ?>
-                <div class="p-3 lg:p-4 bg-gray-900 rounded-lg text-center">
-                    <p class="text-xs text-gray-500 mb-2 lg:mb-3 uppercase tracking-wider">Preview</p>
-                    <div class="relative h-32 lg:h-48 rounded-lg overflow-hidden">
-                        <img src="../<?php echo e($hero['background_image']); ?>" alt="" class="w-full h-full object-cover opacity-50">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="text-center px-4">
-                                <h3 class="text-lg lg:text-2xl font-bold text-white truncate"><?php echo substr(strip_tags($hero['title'] ?? 'Judul Hero'), 0, 40); ?>...</h3>
-                            </div>
+        <!-- Hero Card Preview -->
+        <div class="bg-surface-dark rounded-xl shadow-xl border border-white/5 overflow-hidden">
+            <div class="p-4 border-b border-white/5 bg-white/5">
+                <p class="text-[10px] font-bold uppercase tracking-widest text-primary">Visual Preview</p>
+            </div>
+            <div class="relative h-48 md:h-64 bg-black overflow-hidden group">
+                <img id="hero_preview_img" src="../<?php echo !empty($hero['background_image']) ? e($hero['background_image']) : 'assets/images/placeholder.jpg'; ?>"
+                    alt="" class="w-full h-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+                    <h3 id="preview_title" class="text-lg md:text-3xl font-bold text-white mb-2 max-w-lg leading-tight uppercase tracking-wide">
+                        <?php echo strip_tags($hero['title'] ?? 'Judul Hero Anda'); ?>
+                    </h3>
+                    <p id="preview_subtitle" class="text-xs md:text-sm text-gray-300 max-w-md line-clamp-2 italic">
+                        <?php echo e($hero['subtitle'] ?? 'Tambahkan deskripsi singkat di sini untuk menarik perhatian pengunjung.'); ?>
+                    </p>
+                    <div class="mt-4 flex gap-3">
+                        <div id="preview_btn1" class="px-4 py-1.5 bg-primary text-black text-[10px] font-bold rounded">
+                            <?php echo e($hero['button1_text'] ?? 'PRIMARY CTA'); ?>
+                        </div>
+                        <div id="preview_btn2" class="px-4 py-1.5 border border-white/20 text-white text-[10px] font-bold rounded">
+                            <?php echo e($hero['button2_text'] ?? 'SECONDARY'); ?>
                         </div>
                     </div>
                 </div>
-            <?php endif; ?>
+                <div class="absolute bottom-4 right-4 animate-bounce">
+                    <span class="material-symbols-outlined text-white/30 text-2xl">keyboard_double_arrow_down</span>
+                </div>
+            </div>
+        </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Judul Utama</label>
-                <textarea name="title" rows="3"
-                    class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary font-mono text-xs lg:text-sm"
+        <div class="bg-surface-dark rounded-xl border border-white/5 p-4 md:p-6 lg:p-8 space-y-6">
+            <div class="form-group">
+                <label class="form-label">Judul Utama (Mendukung HTML)</label>
+                <textarea name="title" id="input_title" rows="3"
+                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-primary transition-all font-mono text-sm tracking-tight"
                     placeholder="Mendefinisikan Ruang, &lt;span class='text-gold-gradient italic'&gt;Meningkatkan Gaya Hidup&lt;/span&gt;"><?php echo e($hero['title'] ?? ''); ?></textarea>
-                <p class="text-xs text-gray-500 mt-1">Mendukung HTML untuk styling.</p>
+                <p class="form-help">Tip: Gunakan &lt;span class="text-gold-gradient italic"&gt;teks&lt;/span&gt; untuk efek emas miring.</p>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Subtitle</label>
-                <textarea name="subtitle" rows="3"
-                    class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm lg:text-base"><?php echo e($hero['subtitle'] ?? ''); ?></textarea>
+            <div class="form-group">
+                <label class="form-label">Subtitle / Deskripsi</label>
+                <textarea name="subtitle" id="input_subtitle" rows="3"
+                    class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-primary transition-all text-sm md:text-base"
+                    placeholder="Jelaskan secara singkat apa yang perusahaan Anda tawarkan..."><?php echo e($hero['subtitle'] ?? ''); ?></textarea>
             </div>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Background Image</label>
-                <?php if (!empty($hero['background_image'])): ?>
-                    <div class="mb-3">
-                        <img src="../<?php echo e($hero['background_image']); ?>" alt="" class="w-full h-32 lg:h-48 object-cover rounded-lg">
+            <div class="form-group">
+                <label class="form-label">Background Image</label>
+                <div class="file-upload-wrapper">
+                    <input type="file" name="background_image" id="hero_image_input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                    <div class="space-y-2">
+                        <span class="material-symbols-outlined text-4xl text-gray-500">wallpaper</span>
+                        <p class="text-sm text-gray-400">Klik atau drag gambar latar baru ke sini</p>
+                        <p class="text-[10px] text-gray-500">Resolusi disarankan: 1920x1080px (Maks. 5MB)</p>
                     </div>
-                <?php endif; ?>
-                <input type="file" name="background_image" accept="image/*"
-                    class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm">
-                <p class="text-xs text-gray-500 mt-1">Rekomendasi: 1920x1080px atau lebih.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Tombol 1 - Teks</label>
-                    <input type="text" name="button1_text" value="<?php echo e($hero['button1_text'] ?? 'Lihat Portfolio'); ?>"
-                        class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm lg:text-base">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Tombol 1 - Link</label>
-                    <input type="text" name="button1_link" value="<?php echo e($hero['button1_link'] ?? '#portfolio'); ?>"
-                        class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm lg:text-base">
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Tombol 2 - Teks</label>
-                    <input type="text" name="button2_text" value="<?php echo e($hero['button2_text'] ?? 'Konsultasi Gratis'); ?>"
-                        class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm lg:text-base">
+            <div class="bg-white/5 rounded-xl p-4 md:p-6 border border-white/5">
+                <h3 class="text-sm font-bold text-primary flex items-center gap-2 mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-lg">link</span>
+                    Konfigurasi Tombol (CTA)
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-6 border-b border-white/5">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Tombol 1 - Teks</label>
+                        <input type="text" name="button1_text" id="input_btn1" value="<?php echo e($hero['button1_text'] ?? 'Lihat Portofolio'); ?>"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-primary transition-all">
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="form-label">Tombol 1 - Link</label>
+                        <input type="text" name="button1_link" value="<?php echo e($hero['button1_link'] ?? '#portfolio'); ?>"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-primary transition-all">
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Tombol 2 - Link</label>
-                    <input type="text" name="button2_link" value="<?php echo e($hero['button2_link'] ?? '#contact'); ?>"
-                        class="w-full px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-sm lg:text-base">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Tombol 2 - Teks</label>
+                        <input type="text" name="button2_text" id="input_btn2" value="<?php echo e($hero['button2_text'] ?? 'Konsultasi Gratis'); ?>"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-primary transition-all">
+                    </div>
+                    <div class="form-group mb-0">
+                        <label class="form-label">Tombol 2 - Link</label>
+                        <input type="text" name="button2_link" value="<?php echo e($hero['button2_link'] ?? '#contact'); ?>"
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:border-primary transition-all">
+                    </div>
                 </div>
             </div>
 
-            <label class="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" name="is_active" value="1" <?php echo ($hero['is_active'] ?? 1) ? 'checked' : ''; ?>
-                    class="w-4 h-4 text-primary rounded focus:ring-primary">
-                <span class="text-sm text-gray-700">Aktif</span>
-            </label>
+            <div class="flex items-center justify-between pt-6 border-t border-white/5">
+                <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="checkbox" name="is_active" value="1" <?php echo ($hero['is_active'] ?? 1) ? 'checked' : ''; ?>
+                        class="w-5 h-5 rounded border-white/10 bg-white/5 text-primary focus:ring-primary transition-all">
+                    <span class="text-sm text-gray-300 group-hover:text-primary transition-colors">Hero Section Aktif</span>
+                </label>
 
-            <div class="pt-4 border-t">
-                <button type="submit" class="w-full sm:w-auto px-6 py-2 bg-primary text-dark font-medium rounded-lg hover:bg-primary-dark transition-colors text-sm lg:text-base">
-                    Simpan Perubahan
-                </button>
+                <div class="flex gap-4">
+                    <button type="submit" class="px-10 py-3 bg-primary text-black font-bold rounded-lg hover:shadow-[0_0_20px_rgba(255,178,4,0.4)] transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-xl">save</span>
+                        Simpan Perubahan
+                    </button>
+                </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const inputTitle = document.getElementById('input_title');
+        const inputSubtitle = document.getElementById('input_subtitle');
+        const previewTitle = document.getElementById('preview_title');
+        const previewSubtitle = document.getElementById('preview_subtitle');
+        const heroInput = document.getElementById('hero_image_input');
+        const heroPreviewImg = document.getElementById('hero_preview_img');
+
+        // CTA Inputs
+        const inputBtn1 = document.getElementById('input_btn1');
+        const inputBtn2 = document.getElementById('input_btn2');
+        const previewBtn1 = document.getElementById('preview_btn1');
+        const previewBtn2 = document.getElementById('preview_btn2');
+
+        // Local Real-time Update
+        inputTitle.addEventListener('input', (e) => {
+            const val = e.target.value;
+            previewTitle.textContent = val.replace(/<[^>]*>?/gm, '');
+        });
+
+        inputSubtitle.addEventListener('input', (e) => {
+            const val = e.target.value;
+            previewSubtitle.textContent = val.replace(/<[^>]*>?/gm, '');
+        });
+
+        inputBtn1.addEventListener('input', (e) => {
+            previewBtn1.textContent = e.target.value;
+        });
+
+        inputBtn2.addEventListener('input', (e) => {
+            previewBtn2.textContent = e.target.value;
+        });
+
+        heroInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    heroPreviewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

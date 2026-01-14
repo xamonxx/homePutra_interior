@@ -141,11 +141,11 @@ INSERT IGNORE INTO `services` (`title`, `description`, `icon`, `display_order`) 
 
 -- Insert Default Portfolio Items
 INSERT IGNORE INTO `portfolio` (`title`, `category`, `description`, `image`, `display_order`, `is_featured`) VALUES
-('The Penthouse Edit', 'Residensial', 'Ruang tamu minimalis modern dengan sentuhan mewah', '', 1, 1),
-('Executive Study', 'Kantor', 'Ruang kerja eksekutif dengan kayu gelap yang elegan', '', 2, 1),
-('Serene Master Suite', 'Residensial', 'Kamar tidur utama dengan nuansa Scandinavian yang tenang', '', 3, 1),
-('Marble & Gold', 'Dapur', 'Dapur mewah dengan kombinasi marmer dan emas', '', 4, 1),
-('The Grand Hall', 'Ruang Makan', 'Ruang makan megah untuk keluarga besar', '', 5, 1);
+('The Penthouse Edit', 'Residensial', 'Ruang tamu minimalis modern dengan sentuhan mewah dan pencahayaan alami yang optimal', 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80', 1, 1),
+('Executive Study', 'Kantor', 'Ruang kerja eksekutif dengan kayu oak gelap yang elegan dan detail brass yang mewah', 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80', 2, 1),
+('Serene Master Suite', 'Residensial', 'Kamar tidur utama dengan nuansa Scandinavian yang tenang dan material natural', 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80', 3, 1),
+('Marble & Gold Kitchen', 'Dapur', 'Dapur mewah dengan kombinasi marmer Carrara dan aksen emas yang elegan', 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80', 4, 1),
+('The Grand Hall', 'Ruang Makan', 'Ruang makan megah dengan chandelier kristal dan furniture custom berkelas', 'https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=800&q=80', 5, 1);
 
 -- Insert Default Testimonials
 INSERT IGNORE INTO `testimonials` (`client_name`, `client_location`, `client_image`, `testimonial_text`, `rating`, `display_order`) VALUES

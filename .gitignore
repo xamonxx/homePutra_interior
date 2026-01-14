@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+assets/css/output.css
+
+# Uploaded files
+uploads/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Log files
+*.log
+npm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Cache
+.cache/
+
+# Package lock (optional - uncomment if you want to ignore)
+# package-lock.json

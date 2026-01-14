@@ -1,11 +1,13 @@
     <!-- Footer -->
-    <footer class="bg-[#0D0D0D] py-20 border-t border-white/5">
+    <footer class="bg-[#0D0D0D] py-16 md:py-24 border-t border-white/5">
         <div class="max-w-[1200px] mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-start gap-12">
                 <!-- Brand -->
                 <div class="flex flex-col gap-6" data-aos="fade-up">
                     <a href="<?php echo SITE_URL; ?>" class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-4xl text-primary">other_houses</span>
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3L4 9v12h5v-7h6v7h5V9l-8-6z"></path>
+                        </svg>
                         <span class="brand-font text-2xl font-bold text-white uppercase tracking-tight">
                             Home Putra <span class="text-primary italic normal-case">Interior</span>
                         </span>
@@ -16,21 +18,21 @@
                 </div>
 
                 <!-- Footer Links -->
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-10 md:gap-16">
                     <div data-aos="fade-up" data-aos-delay="100">
                         <h5 class="text-white text-[10px] uppercase tracking-[0.3em] font-bold mb-6">Jelajahi</h5>
                         <div class="flex flex-col gap-4 text-sm text-gray-500 font-medium">
-                            <a class="hover:text-primary transition-colors" href="#portfolio">Portfolio</a>
-                            <a class="hover:text-primary transition-colors" href="#services">Layanan</a>
-                            <a class="hover:text-primary transition-colors" href="#calculator">Kalkulator</a>
+                            <a class="hover:text-primary transition-colors" href="<?php echo SITE_URL; ?>/#portfolio">Portfolio</a>
+                            <a class="hover:text-primary transition-colors" href="<?php echo SITE_URL; ?>/#services">Layanan</a>
+                            <a class="hover:text-primary transition-colors" href="<?php echo SITE_URL; ?>/#calculator">Kalkulator</a>
                         </div>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="200">
                         <h5 class="text-white text-[10px] uppercase tracking-[0.3em] font-bold mb-6">Perusahaan</h5>
                         <div class="flex flex-col gap-4 text-sm text-gray-500 font-medium">
-                            <a class="hover:text-primary transition-colors" href="#about">Tentang</a>
-                            <a class="hover:text-primary transition-colors" href="#testimonials">Testimoni</a>
-                            <a class="hover:text-primary transition-colors" href="#contact">Kontak</a>
+                            <a class="hover:text-primary transition-colors" href="<?php echo SITE_URL; ?>/index.php">Tentang</a>
+                            <a class="hover:text-primary transition-colors" href="<?php echo SITE_URL; ?>/#testimonials">Testimoni</a>
+                            <a class="hover:text-primary transition-colors" href="<?php echo SITE_URL; ?>/#contact">Kontak</a>
                         </div>
                     </div>
                     <div data-aos="fade-up" data-aos-delay="300">
@@ -45,7 +47,7 @@
             </div>
 
             <!-- Copyright -->
-            <div class="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="mt-16 md:mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 md:gap-4">
                 <div class="text-[10px] uppercase tracking-widest text-gray-600 font-bold">
                     © <?php echo date('Y'); ?> Home Putra Interior. Hak Cipta Dilindungi.
                 </div>
@@ -69,30 +71,49 @@
 
     <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-10 left-10 z-50 w-12 h-12 bg-surface-dark border border-white/10 rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-black transition-all opacity-0 pointer-events-none">
-        <span class="material-symbols-outlined">keyboard_arrow_up</span>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+        </svg>
     </button>
 
-    <!-- AOS Library -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="<?php echo SITE_URL; ?>/assets/js/gsap.min.js"></script>
+    <script src="<?php echo SITE_URL; ?>/assets/js/ScrollTrigger.min.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 100
-        });
+        // Custom Reveal Animation (Replacing AOS with lightweight JS)
+        const initReveal = () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                        // Stop observing once animated if we only want it once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+        };
+
+        // Initialize animations
+        if (window.innerWidth >= 1024) {
+            initReveal();
+        }
 
         // Preloader
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
             if (preloader) {
                 preloader.style.opacity = '0';
-                setTimeout(() => preloader.style.display = 'none', 500);
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
             }
         });
 
@@ -139,22 +160,70 @@
             });
         }
 
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scroll for all links with hash
+        document.querySelectorAll('a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
+                const href = this.getAttribute('href');
+                if (!href || href === '#' || href.startsWith('javascript:')) return;
+
+                try {
+                    const url = new URL(href, window.location.origin);
+                    // Check if it's strictly the same page by comparing pathname
+                    // Handling index.php vs trailing slash
+                    const currentPath = window.location.pathname.replace(/\/index\.php$/, '/');
+                    const targetPath = url.pathname.replace(/\/index\.php$/, '/');
+
+                    if (currentPath === targetPath && url.hash) {
+                        const targetId = url.hash.slice(1);
+                        const target = document.getElementById(targetId);
+
+                        if (target) {
+                            e.preventDefault();
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+
+                            // Clean URL after 1 second
+                            setTimeout(() => {
+                                history.replaceState(null, null, window.location.pathname + window.location.search);
+                            }, 1000);
+
+                            // Close mobile menu if open
+                            if (typeof mobileMenu !== 'undefined' && mobileMenu.classList.contains('active')) {
+                                mobileMenu.classList.remove('active');
+                                mobileMenuOverlay.classList.add('hidden');
+                                document.body.style.overflow = '';
+                            }
+                        }
+                    }
+                } catch (err) {
+                    // Fallback for relative hash links
+                    if (href.startsWith('#')) {
+                        const target = document.getElementById(href.slice(1));
+                        if (target) {
+                            e.preventDefault();
+                            window.scrollTo({
+                                top: target.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
                 }
             });
         });
 
         // Counter Animation
         const counters = document.querySelectorAll('.counter');
+
+        // Clean URL on page load if hash exists
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                setTimeout(() => {
+                    history.replaceState(null, null, window.location.pathname + window.location.search);
+                }, 1000);
+            }
+        });
         const animateCounter = (counter) => {
             const target = parseInt(counter.getAttribute('data-target')) || 0;
             const suffix = counter.getAttribute('data-suffix') || '';

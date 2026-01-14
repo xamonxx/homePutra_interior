@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Database Configuration
  * Home Putra Interior CMS
@@ -11,8 +12,12 @@ define('DB_PASS', '');
 define('DB_CHARSET', 'utf8mb4');
 
 // Site Configuration
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
+$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
+$site_url = $protocol . "://" . $host . "/landingpage_homeputra";
+
 define('SITE_NAME', 'Home Putra Interior');
-define('SITE_URL', 'http://localhost/landingpage_homeputra');
+define('SITE_URL', $site_url);
 define('ADMIN_EMAIL', 'admin@homeputra.com');
 
 // Upload Configuration
@@ -27,11 +32,13 @@ if (session_status() === PHP_SESSION_NONE) {
 /**
  * Database Connection Class
  */
-class Database {
+class Database
+{
     private static $instance = null;
     private $connection;
-    
-    private function __construct() {
+
+    private function __construct()
+    {
         try {
             $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
             $options = [
@@ -46,11 +53,11 @@ class Database {
                 $dsn = "mysql:host=" . DB_HOST . ";charset=" . DB_CHARSET;
                 $pdo = new PDO($dsn, DB_USER, DB_PASS);
                 $pdo->exec("CREATE DATABASE IF NOT EXISTS `" . DB_NAME . "` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
-                
+
                 // Reconnect to the new database
                 $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET;
                 $this->connection = new PDO($dsn, DB_USER, DB_PASS, $options);
-                
+
                 // Initialize tables
                 $this->initializeTables();
             } catch (PDOException $e) {
@@ -58,19 +65,22 @@ class Database {
             }
         }
     }
-    
-    public static function getInstance() {
+
+    public static function getInstance()
+    {
         if (self::$instance === null) {
             self::$instance = new self();
         }
         return self::$instance;
     }
-    
-    public function getConnection() {
+
+    public function getConnection()
+    {
         return $this->connection;
     }
-    
-    private function initializeTables() {
+
+    private function initializeTables()
+    {
         $sql = file_get_contents(__DIR__ . '/schema.sql');
         $this->connection->exec($sql);
     }
@@ -79,6 +89,7 @@ class Database {
 /**
  * Get database connection
  */
-function getDB() {
+function getDB()
+{
     return Database::getInstance()->getConnection();
 }

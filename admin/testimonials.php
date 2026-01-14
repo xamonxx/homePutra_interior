@@ -105,64 +105,84 @@ if ($action === 'list') {
 
 $csrfToken = generateCSRFToken();
 
-// NOW include header - after all redirects are done
+// NOW include header
 $pageTitle = 'Testimoni';
 require_once __DIR__ . '/includes/header.php';
 ?>
 
 <?php if ($action === 'list'): ?>
-    <div class="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div class="p-3 md:p-4 lg:p-6 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 md:gap-3">
-            <h2 class="text-sm md:text-base lg:text-lg font-semibold text-gray-800">Daftar Testimoni</h2>
-            <a href="?action=add" class="inline-flex items-center justify-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-primary text-dark font-medium rounded-lg hover:bg-primary-dark transition-colors text-xs md:text-sm">
-                <span class="material-symbols-outlined text-base md:text-lg">add</span>
-                <span>Tambah</span>
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+            <div>
+                <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">rate_review</span>
+                    Manajemen Testimoni
+                </h2>
+                <p class="text-gray-400 text-sm mt-1">Ulasan dari klien yang telah mempercayakan proyek mereka kepada kami.</p>
+            </div>
+            <a href="?action=add" class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-black font-bold rounded-lg hover:shadow-[0_0_20px_rgba(255,178,4,0.4)] transition-all">
+                <span class="material-symbols-outlined">add</span>
+                <span>Tambah Ulasan</span>
             </a>
         </div>
 
         <?php if (empty($items)): ?>
-            <div class="p-6 md:p-8 lg:p-12 text-center text-gray-500">
-                <span class="material-symbols-outlined text-3xl md:text-4xl lg:text-5xl mb-3 md:mb-4">rate_review</span>
-                <p class="text-xs md:text-sm lg:text-base">Belum ada testimoni</p>
-                <a href="?action=add" class="text-primary hover:underline mt-2 inline-block text-xs md:text-sm">Tambah testimoni pertama →</a>
+            <div class="bg-surface-dark rounded-2xl border border-white/5 p-20 text-center">
+                <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-symbols-outlined text-4xl text-primary">rate_review</span>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Belum ada testimoni</h3>
+                <p class="text-gray-500 max-w-xs mx-auto mb-8">Mulailah dengan menambahkan testimoni dari klien pertama Anda.</p>
+                <a href="?action=add" class="text-primary font-bold hover:underline">Tambah Sekarang</a>
             </div>
         <?php else: ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 p-3 md:p-4 lg:p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <?php foreach ($items as $row): ?>
-                    <div class="border border-gray-200 rounded-xl p-3 md:p-4 lg:p-6 hover:shadow-lg transition-shadow">
-                        <div class="flex items-center gap-2 md:gap-3 mb-2 md:mb-3 lg:mb-4">
-                            <?php if ($row['client_image']): ?>
-                                <img src="../<?php echo e($row['client_image']); ?>" alt="" class="w-9 h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full object-cover">
-                            <?php else: ?>
-                                <div class="w-9 h-9 md:w-10 md:h-10 lg:w-12 lg:h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs md:text-sm lg:text-base">
-                                    <?php echo strtoupper(substr($row['client_name'], 0, 2)); ?>
+                    <div class="bg-surface-dark border border-white/5 rounded-2xl overflow-hidden hover:border-primary/30 transition-all group flex flex-col h-full shadow-lg">
+                        <div class="p-6 flex-1">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="relative">
+                                    <?php if ($row['client_image']): ?>
+                                        <img src="../<?php echo e($row['client_image']); ?>" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-primary/20">
+                                    <?php else: ?>
+                                        <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xl border-2 border-primary/20">
+                                            <?php echo strtoupper(substr($row['client_name'], 0, 1)); ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <div class="absolute -bottom-1 -right-1 bg-background-dark p-1 rounded-full">
+                                        <div class="bg-green-500 w-2 h-2 rounded-full <?php echo $row['is_active'] ? 'animate-pulse' : 'bg-gray-600'; ?>"></div>
+                                    </div>
                                 </div>
-                            <?php endif; ?>
-                            <div class="min-w-0">
-                                <p class="font-semibold text-gray-800 text-xs md:text-sm lg:text-base truncate"><?php echo e($row['client_name']); ?></p>
-                                <p class="text-[10px] md:text-xs lg:text-sm text-gray-500 truncate"><?php echo e($row['client_location']); ?></p>
+                                <div class="min-w-0">
+                                    <h4 class="font-bold text-white truncate"><?php echo e($row['client_name']); ?></h4>
+                                    <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold"><?php echo e($row['client_location']); ?></p>
+                                </div>
                             </div>
+
+                            <div class="flex gap-1 mb-4">
+                                <?php for ($i = 0; $i < 5; $i++): ?>
+                                    <span class="material-symbols-outlined text-sm <?php echo $i < $row['rating'] ? 'text-primary' : 'text-gray-700'; ?>">star</span>
+                                <?php endfor; ?>
+                            </div>
+
+                            <p class="text-gray-400 text-sm leading-relaxed italic line-clamp-4">
+                                "<?php echo strip_tags($row['testimonial_text']); ?>"
+                            </p>
                         </div>
 
-                        <div class="flex gap-0.5 mb-2 md:mb-3">
-                            <?php for ($i = 0; $i < 5; $i++): ?>
-                                <span class="material-symbols-outlined text-xs md:text-sm lg:text-base <?php echo $i < $row['rating'] ? 'text-yellow-400' : 'text-gray-300'; ?>">star</span>
-                            <?php endfor; ?>
-                        </div>
-
-                        <p class="text-gray-600 text-[10px] md:text-xs lg:text-sm line-clamp-3 mb-2 md:mb-3 lg:mb-4">"<?php echo e($row['testimonial_text']); ?>"</p>
-
-                        <div class="flex items-center justify-between pt-2 md:pt-3 lg:pt-4 border-t">
-                            <span class="inline-block px-1.5 md:px-2 py-0.5 md:py-1 rounded-full text-[10px] md:text-xs font-medium <?php echo $row['is_active'] ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-600'; ?>">
-                                <?php echo $row['is_active'] ? 'Aktif' : 'Nonaktif'; ?>
-                            </span>
-                            <div class="flex gap-1.5 md:gap-2">
-                                <a href="?action=edit&id=<?php echo $row['id']; ?>" class="text-blue-600 hover:underline text-[10px] md:text-xs lg:text-sm">Edit</a>
+                        <div class="px-6 py-4 bg-white/5 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-[10px] font-bold text-gray-500">ORDER: #<?php echo $row['display_order']; ?></span>
+                            <div class="flex gap-2">
+                                <a href="?action=edit&id=<?php echo $row['id']; ?>" class="p-2 bg-blue-500/10 text-blue-400 rounded-lg hover:bg-blue-500 hover:text-white transition-all">
+                                    <span class="material-symbols-outlined text-lg">edit</span>
+                                </a>
                                 <form method="POST" class="inline" onsubmit="return confirmDelete()">
                                     <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
                                     <input type="hidden" name="action" value="delete">
                                     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                                    <button type="submit" class="text-red-600 hover:underline text-[10px] md:text-xs lg:text-sm">Hapus</button>
+                                    <button type="submit" class="p-2 bg-red-500/10 text-red-400 rounded-lg hover:bg-red-500 hover:text-white transition-all">
+                                        <span class="material-symbols-outlined text-lg">delete</span>
+                                    </button>
                                 </form>
                             </div>
                         </div>
@@ -173,88 +193,184 @@ require_once __DIR__ . '/includes/header.php';
     </div>
 
 <?php else: ?>
-    <div class="max-w-2xl mx-auto">
-        <div class="mb-3 md:mb-4 lg:mb-6">
-            <a href="testimonials.php" class="text-gray-600 hover:text-gray-800 flex items-center gap-1 text-xs md:text-sm">
-                <span class="material-symbols-outlined text-base md:text-lg">arrow_back</span>
+    <!-- Form View -->
+    <div class="max-w-4xl mx-auto">
+        <div class="mb-8">
+            <a href="testimonials.php" class="inline-flex items-center gap-2 text-gray-500 hover:text-primary transition-all text-sm font-bold uppercase tracking-widest">
+                <span class="material-symbols-outlined">arrow_back</span>
                 Kembali
             </a>
         </div>
 
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-3 md:p-4 lg:p-6">
-            <h2 class="text-sm md:text-base lg:text-lg font-semibold text-gray-800 mb-3 md:mb-4 lg:mb-6"><?php echo $item ? 'Edit' : 'Tambah'; ?> Testimoni</h2>
+        <form method="POST" enctype="multipart/form-data" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
+            <input type="hidden" name="action" value="save">
+            <?php if ($item): ?>
+                <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
+            <?php endif; ?>
 
-            <form method="POST" enctype="multipart/form-data" class="space-y-3 md:space-y-4 lg:space-y-6">
-                <input type="hidden" name="csrf_token" value="<?php echo $csrfToken; ?>">
-                <input type="hidden" name="action" value="save">
-                <?php if ($item): ?>
-                    <input type="hidden" name="id" value="<?php echo $item['id']; ?>">
-                <?php endif; ?>
+            <!-- Main Form -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="bg-surface-dark rounded-2xl border border-white/5 p-6 md:p-8 space-y-6">
+                    <h3 class="text-lg font-bold text-white mb-2">Informasi Klien</h3>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                    <div>
-                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Nama Klien <span class="text-red-500">*</span></label>
-                        <input type="text" name="client_name" value="<?php echo e($item['client_name'] ?? ''); ?>" required
-                            class="w-full px-2.5 md:px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs md:text-sm lg:text-base">
-                    </div>
-                    <div>
-                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Lokasi</label>
-                        <input type="text" name="client_location" value="<?php echo e($item['client_location'] ?? ''); ?>"
-                            placeholder="Contoh: Jakarta"
-                            class="w-full px-2.5 md:px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs md:text-sm lg:text-base">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Foto Klien</label>
-                    <?php if (!empty($item['client_image'])): ?>
-                        <div class="mb-2 md:mb-3">
-                            <img src="../<?php echo e($item['client_image']); ?>" alt="" class="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-cover rounded-full">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label class="form-label">Nama Klien <span class="text-red-500">*</span></label>
+                            <input type="text" name="client_name" id="input_name" value="<?php echo e($item['client_name'] ?? ''); ?>" required
+                                placeholder="Contoh: Bpk. Andi"
+                                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary transition-all">
                         </div>
-                    <?php endif; ?>
-                    <input type="file" name="client_image" accept="image/*"
-                        class="w-full px-2.5 md:px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs md:text-sm">
+                        <div class="form-group">
+                            <label class="form-label">Lokasi / Profesi</label>
+                            <input type="text" name="client_location" id="input_location" value="<?php echo e($item['client_location'] ?? ''); ?>"
+                                placeholder="Contoh: Jakarta Selatan"
+                                class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary transition-all">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Isi Testimoni <span class="text-red-500">*</span></label>
+                        <textarea name="testimonial_text" id="input_text" rows="5" required
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary transition-all"><?php echo e($item['testimonial_text'] ?? ''); ?></textarea>
+                    </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Testimoni <span class="text-red-500">*</span></label>
-                    <textarea name="testimonial_text" rows="4" required
-                        class="w-full px-2.5 md:px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs md:text-sm lg:text-base"><?php echo e($item['testimonial_text'] ?? ''); ?></textarea>
+                <div class="bg-surface-dark rounded-2xl border border-white/5 p-6 md:p-8">
+                    <h3 class="text-lg font-bold text-white mb-6">Foto Profil</h3>
+                    <div class="file-upload-wrapper">
+                        <input type="file" name="client_image" id="client_image_input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        <div class="space-y-2">
+                            <span class="material-symbols-outlined text-4xl text-gray-500">account_circle</span>
+                            <p class="text-sm text-gray-400">Klik atau drag foto profil klien ke sini</p>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">REKOMENDASI: 500x500px</p>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="grid grid-cols-2 gap-3 md:gap-4">
-                    <div>
-                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Rating</label>
-                        <select name="rating" class="w-full px-2.5 md:px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs md:text-sm lg:text-base">
+            <!-- Sidebar Form -->
+            <div class="space-y-6">
+                <div class="bg-surface-dark rounded-2xl border border-white/5 p-6 space-y-6">
+                    <h3 class="text-sm font-bold text-primary uppercase tracking-widest">Pengaturan</h3>
+
+                    <div class="form-group">
+                        <label class="form-label text-xs">Rating (1-5)</label>
+                        <select name="rating" id="input_rating" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary transition-all">
                             <?php for ($i = 5; $i >= 1; $i--): ?>
-                                <option value="<?php echo $i; ?>" <?php echo ($item['rating'] ?? 5) == $i ? 'selected' : ''; ?>><?php echo $i; ?> ⭐</option>
+                                <option value="<?php echo $i; ?>" <?php echo ($item['rating'] ?? 5) == $i ? 'selected' : ''; ?> class="bg-surface-dark"><?php echo $i; ?> ⭐ Bintang</option>
                             <?php endfor; ?>
                         </select>
                     </div>
-                    <div>
-                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1.5 md:mb-2">Urutan</label>
+
+                    <div class="form-group">
+                        <label class="form-label text-xs">Urutan Tampil</label>
                         <input type="number" name="display_order" value="<?php echo e($item['display_order'] ?? 0); ?>" min="0"
-                            class="w-full px-2.5 md:px-3 lg:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-xs md:text-sm lg:text-base">
+                            class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary transition-all">
+                    </div>
+
+                    <label class="flex items-center gap-3 cursor-pointer group py-2">
+                        <div class="relative">
+                            <input type="checkbox" name="is_active" value="1" <?php echo ($item['is_active'] ?? 1) ? 'checked' : ''; ?>
+                                class="sr-only peer">
+                            <div class="w-10 h-6 bg-white/10 rounded-full peer peer-checked:bg-primary transition-all"></div>
+                            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all peer-checked:translate-x-4"></div>
+                        </div>
+                        <span class="text-sm text-gray-400 group-hover:text-white transition-colors font-medium">Aktif / Tampilkan</span>
+                    </label>
+
+                    <button type="submit" class="w-full py-4 bg-primary text-black font-extrabold rounded-xl hover:shadow-[0_0_30px_rgba(255,178,4,0.3)] transition-all flex items-center justify-center gap-2 uppercase tracking-widest text-xs">
+                        <span class="material-symbols-outlined">check_circle</span>
+                        Simpan Data
+                    </button>
+                </div>
+
+                <!-- Preview Card Local -->
+                <div class="bg-surface-dark rounded-2xl border border-white/5 p-6 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-3">
+                        <span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded uppercase tracking-widest">Preview</span>
+                    </div>
+                    <div class="pt-4 flex flex-col items-center text-center">
+                        <!-- Avatar Preview -->
+                        <div id="preview_avatar_container" class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full bg-primary/20 flex items-center justify-center mb-4 border-2 border-primary/30 overflow-hidden relative">
+                            <img id="preview_img" src="<?php echo !empty($item['client_image']) ? '../' . e($item['client_image']) : ''; ?>" class="w-full h-full object-cover absolute inset-0 <?php echo empty($item['client_image']) ? 'hidden' : ''; ?>">
+                            <span id="preview_initials" class="text-xl md:text-2xl lg:text-3xl font-bold text-primary <?php echo !empty($item['client_image']) ? 'hidden' : ''; ?>"><?php echo strtoupper(substr($item['client_name'] ?? 'U', 0, 1)); ?></span>
+                        </div>
+
+                        <h4 id="preview_name" class="font-bold text-white text-lg mb-1"><?php echo e($item['client_name'] ?? 'Nama Klien'); ?></h4>
+                        <p id="preview_location" class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-4"><?php echo e($item['client_location'] ?? 'Lokasi'); ?></p>
+
+                        <div id="preview_stars" class="flex gap-1 mb-4 justify-center">
+                            <?php $r = $item['rating'] ?? 5;
+                            for ($i = 0; $i < 5; $i++): ?>
+                                <span class="material-symbols-outlined text-sm <?php echo $i < $r ? 'text-primary' : 'text-gray-700'; ?>">star</span>
+                            <?php endfor; ?>
+                        </div>
+
+                        <p id="preview_text" class="text-sm text-gray-400 italic leading-relaxed">
+                            "<?php echo e($item['testimonial_text'] ?? 'Ulasan klien akan tampil di sini...'); ?>"
+                        </p>
                     </div>
                 </div>
-
-                <label class="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" name="is_active" value="1" <?php echo ($item['is_active'] ?? 1) ? 'checked' : ''; ?>
-                        class="w-4 h-4 text-primary rounded focus:ring-primary">
-                    <span class="text-xs md:text-sm text-gray-700">Aktif</span>
-                </label>
-
-                <div class="pt-3 md:pt-4 border-t flex flex-col sm:flex-row gap-2 md:gap-3">
-                    <button type="submit" class="px-4 md:px-6 py-2 bg-primary text-dark font-medium rounded-lg hover:bg-primary-dark transition-colors text-xs md:text-sm lg:text-base">
-                        Simpan
-                    </button>
-                    <a href="testimonials.php" class="px-4 md:px-6 py-2 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 transition-colors text-xs md:text-sm lg:text-base text-center">
-                        Batal
-                    </a>
-                </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputName = document.getElementById('input_name');
+            const inputLocation = document.getElementById('input_location');
+            const inputRating = document.getElementById('input_rating');
+            const previewName = document.getElementById('preview_name');
+            const previewLocation = document.getElementById('preview_location');
+            const previewText = document.getElementById('preview_text');
+            const previewStars = document.getElementById('preview_stars');
+            const previewInitials = document.getElementById('preview_initials');
+
+            // Sync local card
+            document.getElementById('input_text').addEventListener('input', (e) => {
+                const val = e.target.value.replace(/<[^>]*>?/gm, '');
+                previewText.textContent = `"${val}"`;
+                // To complex to target marquee slide reliably, suggest reload for Live Preview
+            });
+
+            inputName.addEventListener('input', (e) => {
+                previewName.textContent = e.target.value;
+                previewInitials.textContent = e.target.value.charAt(0).toUpperCase() || 'U';
+            });
+
+            inputLocation.addEventListener('input', (e) => {
+                previewLocation.textContent = e.target.value;
+            });
+
+            inputRating.addEventListener('change', (e) => {
+                const r = parseInt(e.target.value);
+                previewStars.innerHTML = '';
+                for (let i = 0; i < 5; i++) {
+                    const span = document.createElement('span');
+                    span.className = `material-symbols-outlined text-xs ${i < r ? 'text-primary' : 'text-gray-700'}`;
+                    span.textContent = 'star';
+                    previewStars.appendChild(span);
+                }
+            });
+
+            // Image Preview
+            const imgInput = document.getElementById('client_image_input');
+            const previewImg = document.getElementById('preview_img');
+            imgInput.addEventListener('change', function() {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImg.src = e.target.result;
+                        previewImg.classList.remove('hidden');
+                        previewInitials.classList.add('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
 <?php endif; ?>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>

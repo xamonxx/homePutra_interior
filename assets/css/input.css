@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #0B0D11;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #333333;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #ffb204;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-background-light dark:bg-background-dark text-slate-900 dark:text-white antialiased overflow-x-hidden transition-colors duration-300;
+    }
+
+    /* Fix Animation initial state for Hero and Nav */
+    .hero-section [data-aos],
+    #main-nav {
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    @media (min-width: 1024px) {
+        .hero-section [data-aos] {
+            opacity: 0 !important;
+        }
+
+        .hero-section [data-aos].aos-animate {
+            opacity: 1 !important;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand-font {
+        @apply font-serif;
+    }
+
+    body,
+    nav,
+    button,
+    input,
+    select,
+    textarea {
+        @apply font-sans;
+    }
+}
+
+@layer components {
+
+    /* Glass Navigation */
+    .glass-nav {
+        background: rgba(11, 13, 17, 0.8);
+        @apply backdrop-blur-xl;
+        border-bottom: 1px solid rgba(255, 178, 4, 0.1);
+    }
+
+    .glass-nav.scrolled {
+        background: rgba(11, 13, 17, 0.95);
+        border-bottom: 1px solid rgba(255, 178, 4, 0.2);
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Gold Gradient Text */
+    .text-gold-gradient {
+        background: linear-gradient(to right, #ffb204, #ffe066, #ffb204);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% auto;
+        animation: shine 5s linear infinite;
+    }
+
+    /* Pulse Ring Animation */
+    .pulse-ring {
+        @apply absolute inset-0 rounded-full bg-primary opacity-60 -z-10;
+        animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+
+    /* Image Hover Effects */
+    .img-hover-zoom {
+        @apply overflow-hidden;
+    }
+
+    .img-hover-zoom img {
+        @apply transition-transform duration-1000 ease-in-out;
+    }
+
+    .img-hover-zoom:hover img {
+        @apply scale-110;
+    }
+
+    /* Magnetic Button Effect */
+    .magnetic-btn {
+        @apply transition-all duration-300;
+        transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .magnetic-btn:hover {
+        @apply -translate-y-[3px];
+        box-shadow: 0 20px 40px rgba(255, 178, 4, 0.3);
+    }
+
+    /* Underline Animation */
+    .underline-animation {
+        @apply relative;
+    }
+
+    .underline-animation::after {
+        content: '';
+        @apply absolute bottom-[-4px] left-0 w-0 h-[2px] bg-primary transition-all duration-300 ease-in-out;
+    }
+
+    .underline-animation:hover::after {
+        @apply w-full;
+    }
+
+    /* Card Hover Effect */
+    .card-hover {
+        @apply transition-all duration-500 ease-in-out;
+        transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .card-hover:hover {
+        @apply -translate-y-2.5;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Gradient Border */
+    .gradient-border {
+        @apply relative border-2 border-transparent;
+        background: linear-gradient(#161B22, #161B22) padding-box,
+            linear-gradient(135deg, #ffb204, #ffe066, #ffb204) border-box;
+    }
+
+    /* Glowing Button */
+    .glow-btn {
+        @apply relative overflow-hidden;
+    }
+
+    .glow-btn::before {
+        content: '';
+        @apply absolute -inset-[50%] w-[200%] h-[200%] rotate-[45deg];
+        background: linear-gradient(45deg,
+                transparent,
+                rgba(255, 178, 4, 0.1),
+                transparent);
+        animation: glow 3s linear infinite;
+    }
+
+    /* Parallax Background */
+    .parallax-bg {
+        @apply bg-fixed bg-center bg-no-repeat bg-cover;
+    }
+
+    /* Loading Skeleton */
+    .skeleton {
+        background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+        @apply translate-x-full transition-transform duration-300 ease-in-out;
+    }
+
+    .mobile-menu.active {
+        @apply translate-x-0;
+    }
+
+    /* Counter Animation */
+    .counter {
+        @apply inline-block;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(2.0);
+        opacity: 0;
+    }
+}
+
+@keyframes glow {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Base Reveal Styles */
+[data-aos] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition-property: opacity, transform;
+    transition-duration: 0.8s;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+[data-aos="fade-down"] {
+    transform: translateY(-30px);
+}
+
+[data-aos="fade-right"] {
+    transform: translateX(-30px);
+}
+
+[data-aos="fade-left"] {
+    transform: translateX(30px);
+}
+
+[data-aos="fade-in"] {
+    transform: none;
+}
+
+[data-aos].aos-animate {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+[data-aos-delay="100"] {
+    transition-delay: 100ms;
+}
+
+[data-aos-delay="200"] {
+    transition-delay: 200ms;
+}
+
+[data-aos-delay="300"] {
+    transition-delay: 300ms;
+}
+
+[data-aos-delay="400"] {
+    transition-delay: 400ms;
+}
+
+[data-aos-delay="500"] {
+    transition-delay: 500ms;
+}
+
+@media (max-width: 1024px) {
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}

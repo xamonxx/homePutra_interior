@@ -1,0 +1,20 @@
+{
+  "name": "landingpage_homeputra",
+  "version": "1.0.0",
+  "description": "Premium interior design landing page dengan sistem CMS lengkap menggunakan PHP, Tailwind CSS, dan animasi AOS.js.",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/container-queries": "^0.1.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19"
+  }
+}

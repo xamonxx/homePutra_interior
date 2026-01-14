@@ -1,5 +1,56 @@
 <!-- Services Section -->
-<section class="py-32 bg-surface-dark border-t border-white/5" id="services">
+<?php
+// Fetch services from database
+$services = [];
+try {
+    $db = getDB();
+    $stmt = $db->query("SELECT * FROM services WHERE is_active = 1 ORDER BY display_order ASC");
+    $services = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $services = [];
+}
+
+// Icon to SVG Mapping
+function getServiceIcon($iconName)
+{
+    $icons = [
+        'home' => '<path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>',
+        'storefront' => '<path d="M3 3h18v18H3V3zM9 9h6v6H9V9z"></path>',
+        'chair' => '<path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>',
+        'chat' => '<path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>',
+        'engineering' => '<path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>',
+        'brush' => '<path d="M7 21a4 4 0 01-4-4 4 4 0 014-4h3l2 2 6 6-6 6-2-2H7z"></path>',
+        'palette' => '<path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8z"></path>',
+        'lightbulb' => '<path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0012 18.75V19a2 2 0 11-4 0v-.25c0-.994-.403-1.895-1.054-2.547l-.548-.547z"></path>',
+        'construction' => '<path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.77 3.77z"></path>',
+        'architecture' => '<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>'
+    ];
+    return $icons[$iconName] ?? $icons['home'];
+}
+
+// Fallback data if empty
+if (empty($services)) {
+    $services = [
+        [
+            'title' => 'Desain Residensial',
+            'description' => 'Renovasi skala penuh dan desain bangunan baru untuk rumah mewah, fokus pada aliran ruang, pencahayaan, dan materialitas.',
+            'icon' => 'home'
+        ],
+        [
+            'title' => 'Ruang Komersial',
+            'description' => 'Menciptakan pengalaman brand yang berdampak melalui desain tata ruang cerdas untuk ritel, perhotelan, dan kantor.',
+            'icon' => 'storefront'
+        ],
+        [
+            'title' => 'Furniture Custom',
+            'description' => 'Desain dan koordinasi fabrikasi furniture eksklusif untuk memastikan setiap produk cocok sempurna dengan ruang Anda.',
+            'icon' => 'chair'
+        ]
+    ];
+}
+?>
+
+<section class="py-20 md:py-32 bg-surface-dark border-t border-white/5" id="services">
     <div class="max-w-[1200px] mx-auto px-6">
         <!-- Section Header -->
         <div class="text-center mb-20" data-aos="fade-up">
@@ -11,80 +62,26 @@
         </div>
 
         <!-- Services Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <!-- Service 1: Residential -->
-            <div class="p-10 rounded-sm border border-white/5 bg-white/[0.02] hover:border-primary/30 transition-all duration-500 group card-hover" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-300">
-                    <span class="material-symbols-outlined text-2xl">home</span>
-                </div>
-                <h3 class="text-2xl md:text-3xl text-white mb-4 font-serif">Desain Residensial</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
-                    Renovasi skala penuh dan desain bangunan baru untuk rumah mewah, fokus pada aliran ruang, pencahayaan, dan materialitas.
-                </p>
-                <a class="text-primary text-xs uppercase tracking-widest font-bold hover:text-white transition-colors inline-flex items-center gap-2 group/link" href="#">
-                    Pelajari Lebih Lanjut
-                    <span class="material-symbols-outlined text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
-                </a>
-            </div>
-
-            <!-- Service 2: Commercial -->
-            <div class="p-10 rounded-sm border border-white/5 bg-white/[0.02] hover:border-primary/30 transition-all duration-500 group card-hover" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-300">
-                    <span class="material-symbols-outlined text-2xl">storefront</span>
-                </div>
-                <h3 class="text-2xl md:text-3xl text-white mb-4 font-serif">Ruang Komersial</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
-                    Menciptakan pengalaman brand yang berdampak melalui desain tata ruang cerdas untuk ritel, perhotelan, dan kantor.
-                </p>
-                <a class="text-primary text-xs uppercase tracking-widest font-bold hover:text-white transition-colors inline-flex items-center gap-2 group/link" href="#">
-                    Pelajari Lebih Lanjut
-                    <span class="material-symbols-outlined text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
-                </a>
-            </div>
-
-            <!-- Service 3: Custom Furniture -->
-            <div class="p-10 rounded-sm border border-white/5 bg-white/[0.02] hover:border-primary/30 transition-all duration-500 group card-hover" data-aos="fade-up" data-aos-delay="300">
-                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-300">
-                    <span class="material-symbols-outlined text-2xl">chair</span>
-                </div>
-                <h3 class="text-2xl md:text-3xl text-white mb-4 font-serif">Furniture Custom</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
-                    Desain dan koordinasi fabrikasi furniture eksklusif untuk memastikan setiap produk cocok sempurna dengan ruang Anda.
-                </p>
-                <a class="text-primary text-xs uppercase tracking-widest font-bold hover:text-white transition-colors inline-flex items-center gap-2 group/link" href="#">
-                    Pelajari Lebih Lanjut
-                    <span class="material-symbols-outlined text-sm transition-transform group-hover/link:translate-x-1">arrow_forward</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Additional Services Row -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
-            <!-- Service 4: Consultation -->
-            <div class="p-10 rounded-sm border border-white/5 bg-white/[0.02] hover:border-primary/30 transition-all duration-500 group card-hover flex gap-8" data-aos="fade-up" data-aos-delay="400">
-                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-black transition-all duration-300">
-                    <span class="material-symbols-outlined text-2xl">chat</span>
-                </div>
-                <div>
-                    <h3 class="text-2xl text-white mb-3 font-serif">Konsultasi Desain</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">
-                        Sesi konsultasi profesional untuk membahas visi, kebutuhan, dan anggaran proyek interior Anda.
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+            <?php foreach ($services as $index => $service): ?>
+                <div class="p-10 rounded-sm border border-white/5 bg-white/[0.02] hover:border-primary/30 transition-all duration-500 group card-hover" data-aos="fade-up" data-aos-delay="<?php echo ($index + 1) * 100; ?>">
+                    <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-8 group-hover:bg-primary group-hover:text-black transition-all duration-300">
+                        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <?php echo getServiceIcon($service['icon']); ?>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl text-white mb-4 font-serif"><?php echo htmlspecialchars($service['title']); ?></h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light">
+                        <?php echo htmlspecialchars($service['description']); ?>
                     </p>
+                    <a class="text-primary text-xs uppercase tracking-widest font-bold hover:text-white transition-colors inline-flex items-center gap-2 group/link" href="#contact">
+                        Pelajari Lebih Lanjut
+                        <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
                 </div>
-            </div>
-
-            <!-- Service 5: Project Management -->
-            <div class="p-10 rounded-sm border border-white/5 bg-white/[0.02] hover:border-primary/30 transition-all duration-500 group card-hover flex gap-8" data-aos="fade-up" data-aos-delay="500">
-                <div class="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover:bg-primary group-hover:text-black transition-all duration-300">
-                    <span class="material-symbols-outlined text-2xl">engineering</span>
-                </div>
-                <div>
-                    <h3 class="text-2xl text-white mb-3 font-serif">Manajemen Proyek</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed font-light">
-                        Koordinasi penuh dari desain hingga implementasi, termasuk pengawasan kontraktor dan vendor.
-                    </p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
