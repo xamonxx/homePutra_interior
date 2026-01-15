@@ -24,6 +24,9 @@ define('ADMIN_EMAIL', 'admin@homeputra.com');
 define('UPLOAD_DIR', __DIR__ . '/../uploads/');
 define('MAX_FILE_SIZE', 5 * 1024 * 1024); // 5MB
 
+// Include Helpers
+require_once __DIR__ . '/../includes/helpers.php';
+
 // Session Configuration
 if (session_status() === PHP_SESSION_NONE) {
     session_start();

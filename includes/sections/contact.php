@@ -227,24 +227,45 @@
         const formMessage = document.getElementById('form-message');
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalHTML = submitBtn.innerHTML;
+        const formData = new FormData(this);
 
         // Show loading state
         submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-base sm:text-lg">progress_activity</span> <span class="hidden sm:inline">Mengirim...</span><span class="sm:hidden">...</span>';
         submitBtn.disabled = true;
 
-        // Simulate form submission
-        setTimeout(() => {
-            formMessage.classList.remove('hidden', 'bg-red-500/20', 'text-red-400');
-            formMessage.classList.add('bg-green-500/20', 'text-green-400');
-            formMessage.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span>Pesan terkirim!</span>';
+        // Kirim data ke API
+        fetch('<?php echo SITE_URL; ?>/api/contact.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                formMessage.classList.remove('hidden', 'bg-red-500/20', 'text-red-400', 'bg-green-500/20', 'text-green-400');
 
-            this.reset();
-            submitBtn.innerHTML = originalHTML;
-            submitBtn.disabled = false;
+                if (data.success) {
+                    formMessage.classList.add('bg-green-500/20', 'text-green-400');
+                    formMessage.innerHTML = `<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">check_circle</span>${data.message}</span>`;
+                    this.reset();
+                } else {
+                    formMessage.classList.add('bg-red-500/20', 'text-red-400');
+                    formMessage.innerHTML = `<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">error</span>${data.message}</span>`;
+                }
 
-            setTimeout(() => {
-                formMessage.classList.add('hidden');
-            }, 5000);
-        }, 1500);
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formMessage.classList.remove('hidden', 'bg-green-500/20', 'text-green-400');
+                formMessage.classList.add('bg-red-500/20', 'text-red-400');
+                formMessage.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">error</span>Terjadi kesalahan pada server.</span>';
+
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            });
     });
 </script>

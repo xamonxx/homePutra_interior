@@ -244,21 +244,21 @@ function getInitials($name)
 
                             <!-- Testimonial Text -->
                             <p class="text-gray-300 text-base leading-relaxed mb-6 line-clamp-4 font-light italic">
-                                "<?php echo htmlspecialchars($t['testimonial_text']); ?>"
+                                "<?php echo e($t['testimonial_text']); ?>"
                             </p>
 
                             <!-- Client Info -->
                             <div class="flex items-center gap-4 pt-6 border-t border-white/[0.06]">
                                 <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center text-black font-bold shadow-lg shadow-primary/30">
                                     <?php if (!empty($t['client_image'])): ?>
-                                        <img src="<?php echo htmlspecialchars($t['client_image']); ?>" alt="<?php echo htmlspecialchars($t['client_name']); ?>" class="w-full h-full object-cover rounded-full">
+                                        <img src="<?php echo e($t['client_image']); ?>" alt="<?php echo e($t['client_name']); ?>" class="w-full h-full object-cover rounded-full">
                                     <?php else: ?>
-                                        <?php echo getInitials($t['client_name']); ?>
+                                        <?php echo e(getInitials($t['client_name'])); ?>
                                     <?php endif; ?>
                                 </div>
                                 <div>
-                                    <p class="text-white font-semibold"><?php echo htmlspecialchars($t['client_name']); ?></p>
-                                    <p class="text-gray-500 text-xs uppercase tracking-wider"><?php echo htmlspecialchars($t['client_location'] ?? ''); ?></p>
+                                    <p class="text-white font-semibold"><?php echo e($t['client_name']); ?></p>
+                                    <p class="text-gray-500 text-xs uppercase tracking-wider"><?php echo e($t['client_location'] ?? ''); ?></p>
                                 </div>
                                 <span class="ml-auto material-symbols-outlined text-green-400 text-xl">verified</span>
                             </div>
@@ -292,21 +292,21 @@ function getInitials($name)
 
                             <!-- Testimonial Text -->
                             <p class="text-gray-300 text-base leading-relaxed mb-6 line-clamp-4 font-light italic">
-                                "<?php echo htmlspecialchars($t['testimonial_text']); ?>"
+                                "<?php echo e($t['testimonial_text']); ?>"
                             </p>
 
                             <!-- Client Info -->
                             <div class="flex items-center gap-4 pt-6 border-t border-white/[0.06]">
                                 <div class="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center text-black font-bold shadow-lg shadow-primary/30">
                                     <?php if (!empty($t['client_image'])): ?>
-                                        <img src="<?php echo htmlspecialchars($t['client_image']); ?>" alt="<?php echo htmlspecialchars($t['client_name']); ?>" class="w-full h-full object-cover rounded-full">
+                                        <img src="<?php echo e($t['client_image']); ?>" alt="<?php echo e($t['client_name']); ?>" class="w-full h-full object-cover rounded-full">
                                     <?php else: ?>
-                                        <?php echo getInitials($t['client_name']); ?>
+                                        <?php echo e(getInitials($t['client_name'])); ?>
                                     <?php endif; ?>
                                 </div>
                                 <div>
-                                    <p class="text-white font-semibold"><?php echo htmlspecialchars($t['client_name']); ?></p>
-                                    <p class="text-gray-500 text-xs uppercase tracking-wider"><?php echo htmlspecialchars($t['client_location'] ?? ''); ?></p>
+                                    <p class="text-white font-semibold"><?php echo e($t['client_name']); ?></p>
+                                    <p class="text-gray-500 text-xs uppercase tracking-wider"><?php echo e($t['client_location'] ?? ''); ?></p>
                                 </div>
                                 <span class="ml-auto material-symbols-outlined text-green-400 text-xl">verified</span>
                             </div>

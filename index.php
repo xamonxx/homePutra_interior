@@ -86,15 +86,15 @@ try {
                         <span class="font-serif text-4xl md:text-5xl text-primary">
                             <?php
                             // Check if suffix looks like "th" for italic styling
-                            $suffix = htmlspecialchars($stat['stat_suffix'] ?? '');
+                            $suffix = e($stat['stat_suffix'] ?? '');
                             if (strtolower($suffix) === 'th') {
-                                echo '<span class="counter" data-target="' . htmlspecialchars($stat['stat_number']) . '" data-suffix="">0</span> <span class="text-2xl ml-0.5 italic">th</span>';
+                                echo '<span class="counter" data-target="' . e($stat['stat_number']) . '" data-suffix="">0</span> <span class="text-2xl ml-0.5 italic">th</span>';
                             } else {
-                                echo '<span class="counter" data-target="' . htmlspecialchars($stat['stat_number']) . '" data-suffix="' . $suffix . '">0</span>';
+                                echo '<span class="counter" data-target="' . e($stat['stat_number']) . '" data-suffix="' . $suffix . '">0</span>';
                             }
                             ?>
                         </span>
-                        <span class="text-[10px] uppercase tracking-[0.2em] font-semibold text-gray-500"><?php echo htmlspecialchars($stat['stat_label']); ?></span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] font-semibold text-gray-500"><?php echo e($stat['stat_label']); ?></span>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -174,11 +174,11 @@ $fallbackImages = [
                     $delay = $index * 100;
                     ?>
                     <div class="group relative overflow-hidden rounded-sm break-inside-avoid cursor-pointer img-hover-zoom card-hover" data-aos="fade-up" <?php echo $delay > 0 ? 'data-aos-delay="' . $delay . '"' : ''; ?>>
-                        <img alt="<?php echo htmlspecialchars($portfolio['title']); ?>" class="w-full aspect-[4/5] object-cover"
-                            src="<?php echo htmlspecialchars($imageSrc); ?>" />
+                        <img alt="<?php echo e($portfolio['title']); ?>" class="w-full aspect-[4/5] object-cover"
+                            src="<?php echo e($imageSrc); ?>" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                            <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2"><?php echo htmlspecialchars($portfolio['category'] ?: 'Interior'); ?></span>
-                            <h3 class="text-2xl md:text-3xl text-white italic font-serif"><?php echo htmlspecialchars($portfolio['title']); ?></h3>
+                            <span class="text-primary text-[10px] uppercase tracking-[0.3em] font-bold mb-2"><?php echo e($portfolio['category'] ?: 'Interior'); ?></span>
+                            <h3 class="text-2xl md:text-3xl text-white italic font-serif"><?php echo e($portfolio['title']); ?></h3>
                         </div>
                     </div>
                 <?php endforeach; ?>

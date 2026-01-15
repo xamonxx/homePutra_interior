@@ -109,9 +109,9 @@ if (empty($services)) {
                                 <span class="absolute top-0 right-0 w-8 h-8 flex items-center justify-center text-white/10 text-sm font-bold group-hover:text-primary/30 transition-colors duration-300">0<?php echo $index + 1; ?></span>
 
                                 <!-- Content -->
-                                <h3 class="text-xl md:text-2xl text-white mb-4 font-semibold transition-colors duration-300 group-hover:text-primary"><?php echo htmlspecialchars($service['title']); ?></h3>
+                                <h3 class="text-xl md:text-2xl text-white mb-4 font-semibold transition-colors duration-300 group-hover:text-primary"><?php echo e($service['title']); ?></h3>
                                 <p class="text-gray-500 text-sm leading-relaxed mb-6 font-light transition-colors duration-300 group-hover:text-gray-400">
-                                    <?php echo htmlspecialchars($service['description']); ?>
+                                    <?php echo e($service['description']); ?>
                                 </p>
 
                                 <!-- CTA Link -->
