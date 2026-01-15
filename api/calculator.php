@@ -104,6 +104,8 @@ function calculateEstimate($data)
     $length = (float)$data['length'];
     $additionalCostIds = $data['additional_costs'] ?? [];
     $includeShipping = $data['include_shipping'] ?? true;
+    $alamat = $data['alamat'] ?? ''; // Alamat Kab/Kota
+    $nama = $data['nama'] ?? 'Pelanggan';
 
     // Get price per meter
     $pricePerMeter = getPrice($productId, $materialId, $modelId, $locationType);
@@ -168,11 +170,20 @@ function calculateEstimate($data)
     $modelStmt->execute([$modelId]);
     $modelName = $modelStmt->fetch()['name'] ?? '';
 
+    // Build location text with alamat
+    $locationText = '';
+    if ($locationType === 'dalam_kota') {
+        $locationText = !empty($alamat) ? $alamat . ', Jawa Barat' : 'Jawa Barat';
+    } else {
+        $locationText = !empty($alamat) ? $alamat : 'Luar Jawa Barat';
+    }
+
     return [
         'success' => true,
         'data' => [
             'location_type' => $locationType,
-            'location_label' => $locationType === 'dalam_kota' ? 'Dalam Kota (Jawa Timur)' : 'Luar Kota (Jabodetabek, Pantura, Jateng)',
+            'location_label' => $locationText,
+            'alamat' => $alamat,
             'product' => $productName,
             'material' => $materialName,
             'model' => $modelName,
@@ -188,15 +199,16 @@ function calculateEstimate($data)
             'max_total' => $maxTotal,
             'badge' => $badge,
             'summary' => sprintf(
-                'Estimasi biaya %s %s %s sepanjang %.1f meter di wilayah %s adalah sekitar Rp %s – Rp %s %s.',
+                'Halo %s! Estimasi biaya %s %s %s sepanjang %.1f meter di %s adalah sekitar Rp %s – Rp %s %s.',
+                $nama,
                 $productName,
                 $materialName,
                 $modelName,
                 $length,
-                $locationType === 'dalam_kota' ? 'Dalam Kota' : 'Luar Kota',
+                $locationText,
                 number_format($minTotal, 0, ',', '.'),
                 number_format($maxTotal, 0, ',', '.'),
-                $shippingCost > 0 ? 'belum termasuk ongkir' : 'termasuk ongkir gratis'
+                $shippingCost > 0 ? 'sudah termasuk ongkir' : 'belum termasuk ongkir'
             )
         ]
     ];

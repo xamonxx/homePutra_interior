@@ -112,6 +112,10 @@
                     </div>
                 </div>
 
+                <a class="nav-link text-[11px] uppercase tracking-[0.3em] font-bold text-white/70 hover:text-primary transition-all duration-300 relative group" href="<?php echo SITE_URL; ?>/#calculator">
+                    Kalkulator
+                    <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
                 <a class="nav-link text-[11px] uppercase tracking-[0.3em] font-bold text-white/70 hover:text-primary transition-all duration-300 relative group" href="<?php echo SITE_URL; ?>/#testimonials">
                     Testimoni
                     <span class="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary transition-all duration-300 group-hover:w-full"></span>

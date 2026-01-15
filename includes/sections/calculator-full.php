@@ -1,12 +1,12 @@
 <!-- Budget Calculator Full Section -->
-<section class="pb-16 bg-[#0a0c10] relative overflow-hidden" id="calculator-form">
-    <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+<section class="py-8 sm:py-12 lg:pb-16 bg-[#0a0c10] relative overflow-hidden" id="calculator-form">
+    <div class="max-w-[1200px] mx-auto px-4 sm:px-6 relative z-10">
         <!-- Calculator Container -->
-        <div class="grid lg:grid-cols-5 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
 
             <!-- Calculator Form - Left Side -->
             <div class="lg:col-span-3">
-                <div class="bg-gradient-to-br from-[#1a1d26] to-[#14171f] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                <div class="bg-gradient-to-br from-[#1a1d26] to-[#14171f] border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl relative overflow-hidden">
                     <!-- Glow Effect -->
                     <div class="absolute top-0 right-0 w-1/2 h-1/2 bg-primary/5 blur-[80px] pointer-events-none"></div>
 
@@ -15,23 +15,23 @@
                     <div class="absolute -bottom-3 -right-3 w-12 h-12 border-b-2 border-r-2 border-primary/50"></div>
 
                     <!-- Step Indicator -->
-                    <div class="flex items-center justify-center gap-4 mb-10 relative z-10">
-                        <div class="flex items-center gap-2">
-                            <div id="step1-indicator" class="w-12 h-12 rounded-full bg-primary text-black flex items-center justify-center text-sm font-bold transition-all shadow-lg shadow-primary/30">1</div>
+                    <div class="flex items-center justify-center gap-2 sm:gap-4 mb-6 sm:mb-10 relative z-10">
+                        <div class="flex items-center gap-1 sm:gap-2">
+                            <div id="step1-indicator" class="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-primary text-black flex items-center justify-center text-xs sm:text-sm font-bold transition-all shadow-lg shadow-primary/30">1</div>
                             <span class="hidden sm:block text-xs text-white font-medium">Lokasi</span>
                         </div>
-                        <div class="h-0.5 w-16 bg-white/10 rounded-full overflow-hidden">
+                        <div class="h-0.5 w-8 sm:w-16 bg-white/10 rounded-full overflow-hidden">
                             <div id="step1-progress" class="h-full bg-primary transition-all duration-500" style="width: 100%"></div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <div id="step2-indicator" class="w-12 h-12 rounded-full bg-white/10 text-white/50 flex items-center justify-center text-sm font-bold transition-all">2</div>
+                        <div class="flex items-center gap-1 sm:gap-2">
+                            <div id="step2-indicator" class="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white/50 flex items-center justify-center text-xs sm:text-sm font-bold transition-all">2</div>
                             <span class="hidden sm:block text-xs text-gray-500 font-medium">Material</span>
                         </div>
-                        <div class="h-0.5 w-16 bg-white/10 rounded-full overflow-hidden">
+                        <div class="h-0.5 w-8 sm:w-16 bg-white/10 rounded-full overflow-hidden">
                             <div id="step2-progress" class="h-full bg-primary transition-all duration-500" style="width: 0%"></div>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <div id="step3-indicator" class="w-12 h-12 rounded-full bg-white/10 text-white/50 flex items-center justify-center text-sm font-bold transition-all">3</div>
+                        <div class="flex items-center gap-1 sm:gap-2">
+                            <div id="step3-indicator" class="w-9 h-9 sm:w-12 sm:h-12 rounded-full bg-white/10 text-white/50 flex items-center justify-center text-xs sm:text-sm font-bold transition-all">3</div>
                             <span class="hidden sm:block text-xs text-gray-500 font-medium">Ukuran</span>
                         </div>
                     </div>
@@ -45,9 +45,22 @@
                             Pilih Lokasi & Produk
                         </h3>
 
+                        <!-- Customer Name -->
+                        <div class="mb-8">
+                            <label class="block text-xs uppercase tracking-widest font-bold text-gray-300 mb-4">Nama Lengkap</label>
+                            <div class="relative">
+                                <input type="text" id="customer-name" name="customer_name"
+                                    class="w-full bg-[#0a0c10] border-2 border-white/10 rounded-xl text-white p-4 pl-12 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                    placeholder="Masukkan nama Anda...">
+                                <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400">person</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Location Selection -->
                         <div class="mb-8">
-                            <label class="block text-xs uppercase tracking-widest font-bold text-gray-300 mb-4">Lokasi Proyek</label>
+                            <label class="block text-xs uppercase tracking-widest font-bold text-gray-300 mb-4">Jangkauan Lokasi</label>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <label class="location-option cursor-pointer group">
                                     <input type="radio" name="location" value="dalam_kota" class="hidden" checked>
@@ -57,8 +70,8 @@
                                                 <span class="material-symbols-outlined text-primary text-2xl">home_pin</span>
                                             </div>
                                             <div>
-                                                <div class="text-white font-semibold">Dalam Kota</div>
-                                                <div class="text-gray-400 text-sm">Jawa Timur</div>
+                                                <div class="text-white font-semibold">Jawa Barat</div>
+                                                <div class="text-gray-400 text-sm">Area Cakupan Utama</div>
                                             </div>
                                         </div>
                                     </div>
@@ -71,12 +84,117 @@
                                                 <span class="material-symbols-outlined text-gray-400 text-2xl">local_shipping</span>
                                             </div>
                                             <div>
-                                                <div class="text-white font-semibold">Luar Kota</div>
-                                                <div class="text-gray-400 text-sm">Jabodetabek, Pantura, Jateng</div>
+                                                <div class="text-white font-semibold">Luar Jawa Barat</div>
+                                                <div class="text-gray-400 text-sm">Nasional & Global</div>
                                             </div>
                                         </div>
                                     </div>
                                 </label>
+                            </div>
+                        </div>
+
+                        <!-- Kabupaten/Kota Selection - Dalam Jawa Barat (Searchable) -->
+                        <div id="jabar-location-section" class="mb-8">
+                            <label class="block text-xs uppercase tracking-widest font-bold text-gray-300 mb-4">Kabupaten / Kota di Jawa Barat</label>
+                            <div class="relative" id="jabar-dropdown-container">
+                                <!-- Searchable Input -->
+                                <input type="text" id="kota-kabupaten-search" name="kota_kabupaten_search"
+                                    class="w-full bg-[#0a0c10] border-2 border-white/10 rounded-xl text-white p-4 pl-12 pr-12 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                    placeholder="Ketik untuk mencari kabupaten/kota..." autocomplete="off">
+
+                                <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                    <span class="material-symbols-outlined text-gray-400">location_on</span>
+                                </div>
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none" id="jabar-arrow">
+                                    <span class="material-symbols-outlined text-gray-500 text-lg transition-transform">expand_more</span>
+                                </div>
+
+                                <!-- Custom Dropdown -->
+                                <div id="jabar-dropdown" class="absolute left-0 right-0 top-full mt-2 bg-[#1a1d26] border border-white/10 rounded-xl shadow-2xl max-h-72 overflow-y-auto hidden z-50" style="scrollbar-width: thin;">
+                                    <!-- Kota Group -->
+                                    <div class="jabar-group" data-group="kota">
+                                        <div class="px-4 py-2 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">🏙️ Kota</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Bandung">Kota Bandung</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Banjar">Kota Banjar</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Bekasi">Kota Bekasi</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Bogor">Kota Bogor</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Cimahi">Kota Cimahi</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Cirebon">Kota Cirebon</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Depok">Kota Depok</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Sukabumi">Kota Sukabumi</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kota Tasikmalaya">Kota Tasikmalaya</div>
+                                    </div>
+                                    <!-- Kabupaten Group -->
+                                    <div class="jabar-group" data-group="kabupaten">
+                                        <div class="px-4 py-2 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">🏘️ Kabupaten</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Bandung">Kabupaten Bandung</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Bandung Barat">Kabupaten Bandung Barat</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Bekasi">Kabupaten Bekasi</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Bogor">Kabupaten Bogor</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Ciamis">Kabupaten Ciamis</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Cianjur">Kabupaten Cianjur</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Cirebon">Kabupaten Cirebon</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Garut">Kabupaten Garut</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Indramayu">Kabupaten Indramayu</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Karawang">Kabupaten Karawang</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Kuningan">Kabupaten Kuningan</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Majalengka">Kabupaten Majalengka</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Pangandaran">Kabupaten Pangandaran</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Purwakarta">Kabupaten Purwakarta</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Subang">Kabupaten Subang</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Sukabumi">Kabupaten Sukabumi</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Sumedang">Kabupaten Sumedang</div>
+                                        <div class="jabar-option px-4 py-3 text-white hover:bg-primary/20 cursor-pointer transition-colors" data-value="Kabupaten Tasikmalaya">Kabupaten Tasikmalaya</div>
+                                    </div>
+                                    <!-- No Results -->
+                                    <div id="jabar-no-results" class="px-4 py-6 text-gray-500 text-center hidden">
+                                        <span class="material-symbols-outlined text-3xl mb-2 block">search_off</span>
+                                        Tidak ditemukan
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-500 text-xs mt-2 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">info</span>
+                                Ketik nama kota/kabupaten atau pilih dari daftar
+                            </p>
+                        </div>
+
+                        <!-- Manual Location Input - Luar Jawa Barat -->
+                        <div id="luar-jabar-location-section" class="mb-8 hidden">
+                            <label class="block text-xs uppercase tracking-widest font-bold text-gray-300 mb-4">Lokasi Proyek</label>
+
+                            <!-- Provinsi -->
+                            <div class="mb-4">
+                                <label class="block text-gray-400 text-xs mb-2">Provinsi</label>
+                                <div class="relative">
+                                    <input type="text" id="provinsi-input" name="provinsi"
+                                        class="w-full bg-[#0a0c10] border-2 border-white/10 rounded-xl text-white p-4 pl-12 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                        placeholder="Contoh: Jawa Tengah, DKI Jakarta...">
+                                    <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <span class="material-symbols-outlined text-gray-400">map</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kota/Kabupaten -->
+                            <div class="mb-4">
+                                <label class="block text-gray-400 text-xs mb-2">Kota / Kabupaten</label>
+                                <div class="relative">
+                                    <input type="text" id="kota-input" name="kota"
+                                        class="w-full bg-[#0a0c10] border-2 border-white/10 rounded-xl text-white p-4 pl-12 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all"
+                                        placeholder="Contoh: Kota Semarang, Kabupaten Klaten...">
+                                    <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                                        <span class="material-symbols-outlined text-gray-400">location_city</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 flex items-start gap-3">
+                                <span class="material-symbols-outlined text-yellow-400 text-xl mt-0.5">info</span>
+                                <div>
+                                    <p class="text-yellow-400 text-sm font-medium mb-1">Biaya Pengiriman Tambahan</p>
+                                    <p class="text-gray-400 text-xs">Lokasi di luar Jawa Barat akan dikenakan biaya pengiriman tambahan. Tim kami akan menghubungi untuk konfirmasi ongkir.</p>
+                                </div>
                             </div>
                         </div>
 
@@ -146,22 +264,34 @@
                         </div>
 
                         <!-- Live Price Preview -->
-                        <div id="price-preview" class="mt-8 bg-gradient-to-r from-primary/15 to-primary/5 border border-primary/30 rounded-2xl p-6">
-                            <div class="flex items-center justify-between mb-4">
+                        <div id="price-preview" class="mt-8 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent border border-primary/30 rounded-2xl p-6 relative overflow-hidden">
+                            <!-- Decorative glow -->
+                            <div class="absolute -top-8 -left-8 w-24 h-24 bg-primary/20 rounded-full blur-2xl"></div>
+
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4 relative z-10">
                                 <div>
-                                    <div class="text-xs uppercase tracking-widest text-primary font-bold mb-2">Harga Per Meter</div>
-                                    <div id="live-price" class="text-4xl font-serif text-white">Rp 0</div>
+                                    <div class="text-primary/80 text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold mb-2 sm:mb-3 flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">payments</span>
+                                        Harga Per Meter
+                                    </div>
+                                    <div id="live-price" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-white tracking-tight">Rp 0</div>
                                 </div>
-                                <div class="text-right">
-                                    <div class="text-xs uppercase tracking-widest text-gray-400 mb-2">Lokasi</div>
-                                    <div id="live-location" class="text-lg text-white font-semibold">Dalam Kota</div>
+                                <div class="sm:text-right">
+                                    <div class="text-gray-500 text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold mb-2 sm:mb-3 flex items-center sm:justify-end gap-2">
+                                        <span class="material-symbols-outlined text-sm">location_on</span>
+                                        Lokasi
+                                    </div>
+                                    <div id="live-location" class="text-sm sm:text-base lg:text-lg text-white font-semibold">Jawa Barat</div>
                                 </div>
                             </div>
 
                             <!-- Price Comparison Table -->
-                            <div class="bg-black/20 rounded-xl p-5 mt-4">
-                                <div class="text-xs uppercase tracking-widest text-gray-400 mb-4 font-medium">Perbandingan Harga Model</div>
-                                <div class="space-y-2" id="price-comparison">
+                            <div class="bg-black/30 rounded-lg sm:rounded-xl p-3 sm:p-5 mt-4 relative z-10 border border-white/5">
+                                <div class="text-[9px] sm:text-[10px] uppercase tracking-[0.15em] sm:tracking-[0.2em] text-gray-400 mb-3 sm:mb-4 font-bold flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-xs sm:text-sm text-primary">compare_arrows</span>
+                                    Perbandingan Harga Model
+                                </div>
+                                <div class="space-y-1 sm:space-y-2" id="price-comparison">
                                     <!-- Will be populated by JS -->
                                 </div>
                             </div>
@@ -213,22 +343,22 @@
                     </div>
 
                     <!-- Navigation Buttons -->
-                    <div class="flex items-center justify-between mt-10 pt-6 border-t border-white/10 relative z-10">
-                        <button type="button" id="btn-prev" onclick="prevStep()" class="hidden px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-semibold hover:bg-white/10 transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-lg">arrow_back</span>
-                            Kembali
+                    <div class="flex flex-wrap items-center justify-between mt-6 sm:mt-10 pt-4 sm:pt-6 border-t border-white/10 relative z-10 gap-3 sm:gap-4">
+                        <button type="button" id="btn-prev" onclick="prevStep()" class="hidden px-4 sm:px-6 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl text-white text-xs sm:text-sm font-semibold hover:bg-white/10 transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base sm:text-lg">arrow_back</span>
+                            <span class="hidden sm:inline">Kembali</span>
                         </button>
-                        <button type="button" id="btn-reset" onclick="resetCalculator()" class="px-6 py-4 bg-white/5 border border-white/10 rounded-xl text-white text-sm font-semibold hover:bg-white/10 transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-lg">refresh</span>
-                            Reset
+                        <button type="button" id="btn-reset" onclick="resetCalculator()" class="px-4 sm:px-6 py-3 sm:py-4 bg-white/5 border border-white/10 rounded-lg sm:rounded-xl text-white text-xs sm:text-sm font-semibold hover:bg-white/10 transition-all flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base sm:text-lg">refresh</span>
+                            <span class="hidden sm:inline">Reset</span>
                         </button>
-                        <button type="button" id="btn-next" onclick="nextStep()" class="px-8 py-4 bg-primary text-black rounded-xl text-sm font-bold hover:bg-primary-hover transition-all shadow-lg shadow-primary/30 ml-auto flex items-center gap-2">
+                        <button type="button" id="btn-next" onclick="nextStep()" class="px-5 sm:px-8 py-3 sm:py-4 bg-primary text-black rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold hover:bg-primary-hover transition-all shadow-lg shadow-primary/30 ml-auto flex items-center gap-2">
                             Lanjut
-                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            <span class="material-symbols-outlined text-base sm:text-lg">arrow_forward</span>
                         </button>
-                        <button type="button" id="btn-calculate" onclick="calculateEstimate()" class="hidden px-8 py-4 bg-primary text-black rounded-xl text-sm font-bold hover:bg-primary-hover transition-all shadow-lg shadow-primary/30 ml-auto flex items-center gap-2">
-                            <span class="material-symbols-outlined text-lg">calculate</span>
-                            Hitung Estimasi
+                        <button type="button" id="btn-calculate" onclick="calculateEstimate()" class="hidden px-5 sm:px-8 py-3 sm:py-4 bg-primary text-black rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold hover:bg-primary-hover transition-all shadow-lg shadow-primary/30 ml-auto flex items-center gap-2">
+                            <span class="material-symbols-outlined text-base sm:text-lg">calculate</span>
+                            <span class="hidden xs:inline">Hitung</span> Estimasi
                         </button>
                     </div>
                 </div>
@@ -236,7 +366,7 @@
 
             <!-- Result Panel - Right Side -->
             <div class="lg:col-span-2">
-                <div class="bg-gradient-to-br from-[#1a1d26] to-[#14171f] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-2xl sticky top-24 overflow-hidden">
+                <div class="bg-gradient-to-br from-[#1a1d26] to-[#14171f] border border-white/10 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl lg:sticky lg:top-24 overflow-hidden">
                     <!-- Glow -->
                     <div class="absolute bottom-0 right-0 w-1/2 h-1/2 bg-primary/5 blur-[60px] pointer-events-none"></div>
 
@@ -295,42 +425,50 @@
                                 <span id="summary-shipping" class="text-white font-medium">-</span>
                             </div>
                             <div id="summary-additional-row" class="hidden flex justify-between items-center">
-                                <span class="text-gray-400 text-sm">Biaya Tambahan</span>
-                                <span id="summary-additional" class="text-white font-medium">-</span>
+                                <span class="text-gray-400 text-xs sm:text-sm">Biaya Tambahan</span>
+                                <span id="summary-additional" class="text-white font-medium text-sm sm:text-base">-</span>
                             </div>
                         </div>
 
                         <!-- Badge -->
-                        <div id="summary-badge" class="mb-6 text-center">
-                            <span class="inline-block px-5 py-2 bg-primary/20 text-primary rounded-full text-sm font-bold uppercase tracking-wider">
+                        <div id="summary-badge" class="mb-4 sm:mb-6 text-center">
+                            <span class="inline-block px-4 sm:px-5 py-1.5 sm:py-2 bg-primary/20 text-primary rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider">
                                 Best Value
                             </span>
                         </div>
 
                         <!-- Grand Total -->
-                        <div class="bg-gradient-to-r from-primary/25 to-primary/10 rounded-2xl p-6 mb-6">
-                            <div class="text-center">
-                                <span class="text-gray-300 text-xs uppercase tracking-widest block mb-3">Estimasi Total</span>
-                                <span id="summary-total-range" class="text-3xl md:text-4xl font-serif text-white font-medium block">Rp 0</span>
-                                <span class="text-gray-400 text-xs mt-3 block">*Estimasi ±10%, bukan harga final</span>
+                        <div class="bg-gradient-to-br from-primary/30 via-primary/15 to-transparent rounded-xl sm:rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 border border-primary/20 relative overflow-hidden">
+                            <!-- Decorative glow -->
+                            <div class="absolute -top-10 -right-10 w-24 sm:w-32 h-24 sm:h-32 bg-primary/20 rounded-full blur-3xl"></div>
+
+                            <div class="text-center relative z-10">
+                                <span class="text-primary/80 text-[9px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.25em] font-bold block mb-3 sm:mb-4">💰 Estimasi Total</span>
+                                <div class="mb-2">
+                                    <span id="summary-total-range" class="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-white tracking-tight leading-tight">Rp 0</span>
+                                </div>
+                                <div class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/5 rounded-full mt-2 sm:mt-3">
+                                    <span class="material-symbols-outlined text-yellow-400 text-xs sm:text-sm">info</span>
+                                    <span class="text-gray-400 text-[10px] sm:text-xs">Estimasi ±10%, bukan harga final</span>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Summary Text -->
-                        <div class="bg-white/[0.03] rounded-xl p-5 mb-6 border border-white/5">
-                            <p id="summary-text" class="text-gray-300 text-sm leading-relaxed">-</p>
+                        <div class="bg-white/[0.03] rounded-lg sm:rounded-xl p-3 sm:p-5 mb-4 sm:mb-6 border border-white/5">
+                            <p id="summary-text" class="text-gray-300 text-xs sm:text-sm leading-relaxed">-</p>
                         </div>
 
                         <!-- Action Buttons -->
-                        <div class="space-y-3">
-                            <button onclick="sendToWhatsApp()" class="w-full py-4 bg-[#25D366] text-white rounded-xl text-sm font-bold hover:bg-[#20BD5A] transition-all flex items-center justify-center gap-3 shadow-lg">
-                                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <div class="space-y-2 sm:space-y-3">
+                            <button onclick="sendToWhatsApp()" class="w-full py-3 sm:py-4 bg-[#25D366] text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold hover:bg-[#20BD5A] transition-all flex items-center justify-center gap-2 sm:gap-3 shadow-lg">
+                                <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                                 </svg>
                                 Kirim via WhatsApp
                             </button>
-                            <button onclick="exportPDF()" class="w-full py-4 bg-white/10 border border-white/10 text-white rounded-xl text-sm font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-3">
-                                <span class="material-symbols-outlined text-xl">picture_as_pdf</span>
+                            <button onclick="exportPDF()" class="w-full py-3 sm:py-4 bg-white/10 border border-white/10 text-white rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-2 sm:gap-3">
+                                <span class="material-symbols-outlined text-lg sm:text-xl">picture_as_pdf</span>
                                 Download PDF
                             </button>
                         </div>
@@ -657,9 +795,117 @@
                 activeContainer.classList.add('bg-primary/20');
                 activeContainer.classList.remove('bg-white/5');
             }
+
+            // Toggle location sections based on selection
+            const jabarSection = document.getElementById('jabar-location-section');
+            const luarJabarSection = document.getElementById('luar-jabar-location-section');
+
+            if (this.value === 'dalam_kota') {
+                // Show Jawa Barat dropdown, hide manual input
+                jabarSection.classList.remove('hidden');
+                luarJabarSection.classList.add('hidden');
+            } else {
+                // Hide Jawa Barat dropdown, show manual input
+                jabarSection.classList.add('hidden');
+                luarJabarSection.classList.remove('hidden');
+            }
+
             updateProductPreview();
         });
     });
+
+    // Custom Jabar Dropdown Handler
+    const jabarInput = document.getElementById('kota-kabupaten-search');
+    const jabarDropdown = document.getElementById('jabar-dropdown');
+    const jabarArrow = document.getElementById('jabar-arrow');
+    const jabarOptions = document.querySelectorAll('.jabar-option');
+    const jabarNoResults = document.getElementById('jabar-no-results');
+    const jabarGroups = document.querySelectorAll('.jabar-group');
+
+    // Make input editable and toggle dropdown
+    jabarInput.removeAttribute('readonly');
+
+    jabarInput.addEventListener('focus', function() {
+        openJabarDropdown();
+    });
+
+    jabarInput.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (jabarDropdown.classList.contains('hidden')) {
+            openJabarDropdown();
+        }
+    });
+
+    // Filter as user types
+    jabarInput.addEventListener('input', function() {
+        filterJabarOptions(this.value.toLowerCase());
+        if (jabarDropdown.classList.contains('hidden')) {
+            openJabarDropdown();
+        }
+    });
+
+    function openJabarDropdown() {
+        jabarDropdown.classList.remove('hidden');
+        jabarArrow.querySelector('span').style.transform = 'rotate(180deg)';
+        jabarInput.classList.add('border-primary');
+    }
+
+    function closeJabarDropdown() {
+        jabarDropdown.classList.add('hidden');
+        jabarArrow.querySelector('span').style.transform = 'rotate(0deg)';
+        jabarInput.classList.remove('border-primary');
+    }
+
+    function filterJabarOptions(query) {
+        let visibleCount = 0;
+
+        jabarOptions.forEach(option => {
+            const text = option.textContent.toLowerCase();
+            if (text.includes(query)) {
+                option.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                option.classList.add('hidden');
+            }
+        });
+
+        // Show/hide group headers based on visible options
+        jabarGroups.forEach(group => {
+            const visibleInGroup = group.querySelectorAll('.jabar-option:not(.hidden)').length;
+            if (visibleInGroup === 0) {
+                group.classList.add('hidden');
+            } else {
+                group.classList.remove('hidden');
+            }
+        });
+
+        // Show no results message
+        if (visibleCount === 0) {
+            jabarNoResults.classList.remove('hidden');
+        } else {
+            jabarNoResults.classList.add('hidden');
+        }
+    }
+
+    // Select option
+    jabarOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const value = this.dataset.value;
+            jabarInput.value = value;
+            calcState.kotaKabupaten = value;
+            closeJabarDropdown();
+            filterJabarOptions(''); // Reset filter
+        });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+        const container = document.getElementById('jabar-dropdown-container');
+        if (container && !container.contains(e.target)) {
+            closeJabarDropdown();
+        }
+    });
+
 
     // Length input handlers
     const lengthInput = document.getElementById('length-input');
@@ -725,7 +971,34 @@
 
     function nextStep() {
         if (calcState.currentStep < 3) {
+            // Validation for Step 1
             if (calcState.currentStep === 1) {
+                const name = document.getElementById('customer-name').value.trim();
+                let address = '';
+
+                if (calcState.location === 'dalam_kota') {
+                    address = document.getElementById('kota-kabupaten-search').value.trim();
+                } else {
+                    const prov = document.getElementById('provinsi-input').value.trim();
+                    const city = document.getElementById('kota-input').value.trim();
+                    if (prov && city) address = `${city}, ${prov}`;
+                }
+
+                if (!name) {
+                    alert('Mohon masukkan Nama Lengkap Anda');
+                    document.getElementById('customer-name').focus();
+                    return;
+                }
+                if (!address) {
+                    alert('Mohon lengkapi data Lokasi/Alamat Anda');
+                    if (calcState.location === 'dalam_kota') {
+                        document.getElementById('kota-kabupaten-search').focus();
+                    } else {
+                        document.getElementById('kota-input').focus();
+                    }
+                    return;
+                }
+
                 loadMaterialsForProduct(calcState.product);
             }
             calcState.currentStep++;
@@ -770,6 +1043,16 @@
         calcState.additionalCosts = additionalCostIds;
         calcState.includeShipping = document.getElementById('include-shipping').checked;
 
+        // Get alamat based on location type
+        let alamat = '';
+        if (calcState.location === 'dalam_kota') {
+            alamat = document.getElementById('kota-kabupaten-search').value || '';
+        } else {
+            const provinsi = document.getElementById('provinsi-input').value || '';
+            const kota = document.getElementById('kota-input').value || '';
+            alamat = [kota, provinsi].filter(Boolean).join(', ');
+        }
+
         try {
             const response = await fetch('<?= SITE_URL ?>/api/calculator.php?action=calculate', {
                 method: 'POST',
@@ -783,7 +1066,9 @@
                     location_type: calcState.location,
                     length: calcState.length,
                     include_shipping: calcState.includeShipping,
-                    additional_costs: calcState.additionalCosts
+                    additional_costs: calcState.additionalCosts,
+                    alamat: alamat,
+                    nama: document.getElementById('customer-name').value.trim()
                 })
             });
 
@@ -835,20 +1120,303 @@
 
     // Send to WhatsApp
     function sendToWhatsApp() {
-        if (!calcState.result) return;
+        if (!calcState.result) {
+            alert('Silakan hitung estimasi terlebih dahulu');
+            return;
+        }
         const d = calcState.result;
-        const text = encodeURIComponent(`Halo Home Putra Interior! 👋\n\nSaya tertarik dengan estimasi berikut:\n\n📍 Lokasi: ${d.location_label}\n📦 Produk: ${d.product}\n🪵 Material: ${d.material}\n🎨 Model: ${d.model}\n📏 Panjang: ${d.length} meter\n\n💰 Estimasi: ${formatCurrency(d.min_total)} – ${formatCurrency(d.max_total)}\n\nMohon informasi lebih lanjut. Terima kasih! 🙏`);
+
+        // Build detailed items list for WhatsApp
+        let details = `📍 Lokasi: ${d.location_label}\n`;
+        details += `📦 Produk: ${d.product}\n`;
+        details += `🪵 Material: ${d.material}\n`;
+        details += `🎨 Model: ${d.model}\n`;
+        details += `📏 Panjang: ${d.length} meter\n\n`;
+
+        details += `💰 Rincian Estimasi:\n`;
+        details += `- Harga/m: ${formatCurrency(d.price_per_meter)}\n`;
+        details += `- Subtotal: ${formatCurrency(d.subtotal)}\n`;
+        details += `- Ongkir: ${d.shipping_label}\n`;
+
+        if (d.additional_costs > 0) {
+            details += `- Tambahan: ${formatCurrency(d.additional_costs)}\n`;
+        }
+
+        details += `\n✨ ESTIMASI TOTAL:\n${formatCurrency(d.min_total)} – ${formatCurrency(d.max_total)}`;
+
+        const customerName = document.getElementById('customer-name').value || 'Pelanggan';
+        const text = encodeURIComponent(`Halo Home Putra Interior! 👋\n\nSaya ${customerName}, saya telah menggunakan Kalkulator Estimasi di website dan tertarik dengan rincian berikut:\n\n${details}\n\nMohon informasi lebih lanjut untuk survey lokasi. Terima kasih! 🙏`);
+
         window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
     }
 
-    // Export PDF
-    function exportPDF() {
-        alert('Fitur export PDF akan segera tersedia. Sementara ini, Anda bisa mengambil screenshot atau mengirim via WhatsApp.');
+    // Export PDF with Premium Elegant Design
+    async function exportPDF() {
+        if (!calcState.result) {
+            alert('Silakan hitung estimasi terlebih dahulu');
+            return;
+        }
+
+        const {
+            jsPDF
+        } = window.jspdf;
+        const doc = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        const data = calcState.result;
+        const goldAccent = [197, 158, 62]; // Sophisticated Gold
+        const darkNavy = [15, 23, 42]; // Premium Navy
+        const darkGray = [51, 65, 85];
+        const lightGray = [248, 250, 252];
+        const borderGray = [226, 232, 240];
+
+        // --- 1. PREMIUM HEADER ---
+        // Top accent line
+        doc.setFillColor(...goldAccent);
+        doc.rect(0, 0, 210, 2, 'F');
+
+        // Logo Section
+        doc.setFillColor(...darkNavy);
+        doc.roundedRect(15, 12, 12, 12, 2, 2, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(10);
+        doc.text('H', 19.5, 20);
+
+        // Brand Name
+        doc.setTextColor(...darkNavy);
+        doc.setFontSize(18);
+        doc.setFont('times', 'bold'); // Serif font for premium feel
+        doc.text('Home Putra', 32, 19);
+        doc.setFont('times', 'italic');
+        doc.setTextColor(...goldAccent);
+        doc.text('Interior', 68, 19);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...darkGray);
+        doc.text('PREMIUM INTERIOR DESIGN & FURNITURE STUDIO', 32, 24);
+
+        // Right side info (Invoice / Ref)
+        const refNo = 'EST/' + new Date().getFullYear() + '/' + Math.random().toString(36).substr(2, 5).toUpperCase();
+        doc.setFontSize(8);
+        doc.setTextColor(...darkGray);
+        doc.setFont('helvetica', 'bold');
+        doc.text('ESTIMASI PENAWARAN', 195, 17, {
+            align: 'right'
+        });
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Ref No: ${refNo}`, 195, 21.5, {
+            align: 'right'
+        });
+        doc.text(`Tanggal: ${new Date().toLocaleDateString('id-ID', {day: 'numeric', month: 'long', year: 'numeric'})}`, 195, 26, {
+            align: 'right'
+        });
+
+        // Decorative line
+        doc.setDrawColor(...borderGray);
+        doc.setLineWidth(0.2);
+        doc.line(15, 35, 195, 35);
+
+        // --- 2. CUSTOMER & PROJECT INFO ---
+        doc.setTextColor(...darkNavy);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Informasi Klien', 15, 45);
+        doc.text('Spesifikasi Utama', 110, 45);
+
+        // Clientele info box
+        doc.setFillColor(...lightGray);
+        doc.roundedRect(15, 48, 85, 25, 1, 1, 'F');
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8.5);
+        doc.setTextColor(...darkGray);
+
+        const customerName = document.getElementById('customer-name').value || 'Walk-in Customer';
+        doc.text([
+            `Nama: ${customerName}`,
+            `Lokasi: ${data.location_label}`,
+            `Status: Estimasi Awal`
+        ], 20, 55);
+
+        // Specs info box
+        doc.setFillColor(...lightGray);
+        doc.roundedRect(110, 48, 85, 25, 1, 1, 'F');
+        doc.text([
+            `Produk: ${data.product}`,
+            `Material: ${data.material}`,
+            `Model: ${data.model}`,
+            `Dimensi: ${data.length} Meter Lari`
+        ], 115, 53.5);
+
+        // --- 3. PRICING TABLE ---
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(...darkNavy);
+        doc.text('Rincian Pekerjaan', 15, 85);
+
+        const tableBody = [
+            ['01', `${data.product} - Custom Furniture\nSpec: ${data.material} • ${data.model}`, `${data.length} m`, formatCurrency(data.price_per_meter), formatCurrency(data.subtotal)]
+        ];
+
+        // Add additional costs
+        if (data.additional_details && data.additional_details.length > 0) {
+            data.additional_details.forEach((item, idx) => {
+                tableBody.push(['02.' + (idx + 1), item.name, '1 Lot', '-', formatCurrency(item.amount)]);
+            });
+        }
+
+        // Add shipping
+        tableBody.push(['03', 'Logistic & Installation Fee', '1 Lot', '-', data.shipping_label]);
+
+        doc.autoTable({
+            startY: 90,
+            head: [
+                ['No', 'Uraian Pekerjaan', 'QTY', 'Harga Satuan', 'Total']
+            ],
+            body: tableBody,
+            theme: 'plain',
+            headStyles: {
+                fillColor: [...darkNavy],
+                textColor: [255, 255, 255],
+                fontSize: 8.5,
+                fontStyle: 'bold',
+                halign: 'center'
+            },
+            bodyStyles: {
+                fontSize: 8,
+                textColor: [...darkGray],
+                cellPadding: 4
+            },
+            columnStyles: {
+                0: {
+                    cellWidth: 10,
+                    halign: 'center'
+                },
+                1: {
+                    cellWidth: 90
+                },
+                2: {
+                    halign: 'center'
+                },
+                3: {
+                    halign: 'right'
+                },
+                4: {
+                    halign: 'right',
+                    fontStyle: 'bold',
+                    textColor: [...darkNavy]
+                }
+            },
+            didDrawPage: function(data) {
+                // Background for tables
+                doc.setDrawColor(...borderGray);
+                doc.setLineWidth(0.1);
+                doc.line(15, data.cursor.y, 195, data.cursor.y);
+            }
+        });
+
+        // --- 4. GRAND TOTAL SECTION (PREMIUM CARD) ---
+        let currentY = doc.lastAutoTable.finalY + 10;
+
+        // Ensure section doesn't break page
+        if (currentY > 230) {
+            doc.addPage();
+            currentY = 20;
+        }
+
+        const totalCardWidth = 85;
+        const totalCardX = 110;
+
+        // Card background
+        doc.setFillColor(...lightGray);
+        doc.rect(totalCardX, currentY, totalCardWidth, 40, 'F');
+
+        // Card edge (decorative)
+        doc.setFillColor(...goldAccent);
+        doc.rect(totalCardX + totalCardWidth - 2, currentY, 2, 40, 'F');
+
+        doc.setTextColor(...darkGray);
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Estimasi Minimum:', totalCardX + 5, currentY + 10);
+        doc.text('Estimasi Maksimum:', totalCardX + 5, currentY + 16);
+
+        doc.setTextColor(...darkNavy);
+        doc.setFont('helvetica', 'bold');
+        doc.text(formatCurrency(data.min_total), totalCardX + totalCardWidth - 8, currentY + 10, {
+            align: 'right'
+        });
+        doc.text(formatCurrency(data.max_total), totalCardX + totalCardWidth - 8, currentY + 16, {
+            align: 'right'
+        });
+
+        doc.setDrawColor(...borderGray);
+        doc.line(totalCardX + 5, currentY + 22, totalCardX + totalCardWidth - 8, currentY + 22);
+
+        doc.setFontSize(9);
+        doc.setTextColor(...goldAccent);
+        doc.text('TOTAL ESTIMASI HUBUNGI ADMIN', totalCardX + 5, currentY + 30);
+        doc.setFontSize(11);
+        doc.setTextColor(...darkNavy);
+        doc.text(`${formatCurrency(data.min_total)} - ${formatCurrency(data.max_total)}`, totalCardX + totalCardWidth - 8, currentY + 36, {
+            align: 'right'
+        });
+
+        // --- 5. TERMS & SIGNATURE ---
+        const footerY = 245;
+
+        doc.setTextColor(...darkNavy);
+        doc.setFontSize(9);
+        doc.setFont('helvetica', 'bold');
+        doc.text('Syarat & Ketentuan:', 15, currentY + 50);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.5);
+        doc.setTextColor(...darkGray);
+        const terms = [
+            '• Harga di atas adalah ESTIMASI AWAL berdasarkan ukuran kasar.',
+            '• Harga final ditentukan setelah tim kami melakukan survey lokasi.',
+            '• Masa berlaku penawaran ini adalah 14 hari kerja.',
+            '• Pembayaran bertahap sesuai progres pengerjaan unit.',
+            '• Home Putra Interior menjamin kualitas material sesuai spesifikasi.'
+        ];
+        doc.text(terms, 15, currentY + 56);
+
+        // Professional Signature Area
+        doc.setFontSize(8.5);
+        doc.setTextColor(...darkNavy);
+        doc.text('Dibuat Oleh,', 150, currentY + 50);
+        doc.setFont('times', 'italic');
+        doc.text('Sistem Kalkulator Digital', 150, currentY + 65);
+        doc.setDrawColor(...borderGray);
+        doc.line(150, currentY + 67, 190, currentY + 67);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+        doc.text('Home Putra Interior Team', 150, currentY + 71);
+
+        // Footer Brand bar
+        doc.setFillColor(...darkNavy);
+        doc.rect(0, 285, 210, 12, 'F');
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(7);
+        doc.text('QUALITY INTERIOR FOR YOUR LIFESTYLE | WWW.HOMEPUTRAINTERIOR.COM', 105, 292.5, {
+            align: 'center'
+        });
+
+        doc.save(`${refNo.replace(/\//g, '-')}-HomePutra.pdf`);
     }
 
     // Initialize on load
     document.addEventListener('DOMContentLoaded', initCalculator);
 </script>
+
+<!-- PDF Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 
 <style>
     input[type="range"]::-webkit-slider-thumb {

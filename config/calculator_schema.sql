@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `calculator_products` (
 CREATE TABLE IF NOT EXISTS `calculator_materials` (
     `id` INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(100) NOT NULL,
-    `slug` VARCHAR(100) NOT NULL,
+    `slug` VARCHAR(100) UNIQUE NOT NULL,
     `grade` ENUM('A', 'B', 'C') DEFAULT 'B',
     `description` TEXT,
     `is_waterproof` TINYINT(1) DEFAULT 0,
@@ -77,7 +77,8 @@ CREATE TABLE IF NOT EXISTS `calculator_shipping` (
     `location_type` ENUM('dalam_kota', 'luar_kota') NOT NULL,
     `description` VARCHAR(255),
     `is_active` TINYINT(1) DEFAULT 1,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY `shipping_range` (`min_total`, `location_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Additional Costs Table
