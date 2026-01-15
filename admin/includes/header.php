@@ -253,6 +253,11 @@ $flash = getFlash();
                     <span class="sidebar-text text-sm font-medium">Pesan Kontak</span>
                 </a>
 
+                <a href="calculator.php" class="sidebar-link flex items-center gap-3 px-4 py-3 text-gray-300 transition-colors <?php echo $currentPage === 'calculator' ? 'active' : ''; ?>">
+                    <span class="material-symbols-outlined text-xl">calculate</span>
+                    <span class="sidebar-text text-sm font-medium">Kalkulator Harga</span>
+                </a>
+
                 <div class="sidebar-heading px-4 mt-6 mb-2 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Pengaturan</div>
 
                 <a href="users.php" class="sidebar-link flex items-center gap-3 px-4 py-3 text-gray-300 transition-colors <?php echo $currentPage === 'users' ? 'active' : ''; ?>">

@@ -4,6 +4,8 @@
   "description": "Premium interior design landing page dengan sistem CMS lengkap menggunakan PHP, Tailwind CSS, dan animasi AOS.js.",
   "main": "tailwind.config.js",
   "scripts": {
+    "build": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
+    "watch": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
