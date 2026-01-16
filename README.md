@@ -150,7 +150,7 @@ colors: {
 ### Mengubah Nomor WhatsApp
 Edit di `includes/footer.php`:
 ```html
-<a href="https://wa.me/6281234567890" ...>
+<a href="https://wa.me/6283137554972" ...>
 ```
 
 ### Mengubah Font

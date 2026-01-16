@@ -117,7 +117,7 @@ INSERT IGNORE INTO `site_settings` (`setting_key`, `setting_value`, `setting_typ
 ('contact_email', 'hello@homeputra.com', 'text', 'contact'),
 ('contact_phone', '+62 812 3456 7890', 'text', 'contact'),
 ('contact_address', 'Jl. Desain No. 123, Jakarta Selatan 12345', 'textarea', 'contact'),
-('whatsapp_number', '6281234567890', 'text', 'contact'),
+('whatsapp_number', '6283137554972', 'text', 'contact'),
 ('instagram_url', 'https://instagram.com/homeputrainterior', 'text', 'social'),
 ('facebook_url', 'https://facebook.com/homeputrainterior', 'text', 'social'),
 ('logo_image', '', 'image', 'branding');

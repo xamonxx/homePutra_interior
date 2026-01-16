@@ -70,7 +70,7 @@
 
                             <!-- Contact Details -->
                             <div class="space-y-3 sm:space-y-4">
-                                <a href="https://wa.me/6281234567890" class="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 bg-gradient-to-br from-white/[0.06] to-transparent border border-white/[0.08] rounded-xl sm:rounded-2xl cursor-pointer hover:border-primary/30 transition-all duration-300">
+                                <a href="https://wa.me/<?php echo getWhatsAppNumber(); ?>" class="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 bg-gradient-to-br from-white/[0.06] to-transparent border border-white/[0.08] rounded-xl sm:rounded-2xl cursor-pointer hover:border-primary/30 transition-all duration-300">
                                     <div class="w-11 sm:w-12 md:w-14 h-11 sm:h-12 md:h-14 rounded-xl sm:rounded-2xl bg-gradient-to-br from-green-500/30 to-green-500/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <span class="material-symbols-outlined text-green-400 text-xl sm:text-2xl">chat</span>
                                     </div>
@@ -210,7 +210,7 @@
         <!-- WhatsApp CTA -->
         <div class="mt-8 sm:mt-10 md:mt-12 text-center" data-aos="fade-up" data-aos-delay="200">
             <p class="text-gray-500 text-xs sm:text-sm mb-4 sm:mb-6">Butuh respons cepat?</p>
-            <a href="https://wa.me/6281234567890" class="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 md:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all hover:shadow-xl hover:shadow-green-500/30 group">
+            <a href="https://wa.me/<?php echo getWhatsAppNumber(); ?>" class="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-6 md:px-8 py-3 sm:py-4 bg-green-500 hover:bg-green-600 text-white rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all hover:shadow-xl hover:shadow-green-500/30 group">
                 <span class="material-symbols-outlined text-base sm:text-lg">chat</span>
                 <span class="hidden sm:inline">Chat WhatsApp Sekarang</span>
                 <span class="sm:hidden">WhatsApp</span>

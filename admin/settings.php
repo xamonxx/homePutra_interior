@@ -153,8 +153,17 @@ require_once __DIR__ . '/includes/header.php';
                                     <input type="<?php echo $item['setting_type'] === 'number' ? 'number' : 'text'; ?>"
                                         name="settings[<?php echo e($item['setting_key']); ?>]"
                                         value="<?php echo e($item['setting_value']); ?>"
+                                        <?php if ($item['setting_key'] === 'whatsapp_number'): ?>
+                                        placeholder="Contoh: 628123456789"
+                                        <?php endif; ?>
                                         class="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-white placeholder-gray-600 hover:border-white/20">
                                 </div>
+                                <?php if ($item['setting_key'] === 'whatsapp_number'): ?>
+                                    <p class="mt-2 text-xs text-gray-500 flex items-center gap-1.5">
+                                        <span class="material-symbols-outlined text-sm text-primary">info</span>
+                                        <span>Gunakan format internasional dengan <strong class="text-primary">62</strong> (tanpa + atau 0). Contoh: <code class="bg-white/10 px-1.5 py-0.5 rounded text-primary">628123456789</code></span>
+                                    </p>
+                                <?php endif; ?>
                             <?php endif; ?>
                         </div>
                     <?php endforeach; ?>

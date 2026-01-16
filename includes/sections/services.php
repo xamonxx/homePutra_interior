@@ -260,7 +260,7 @@ if (empty($services)) {
                             Konsultasi Gratis
                             <span class="material-symbols-outlined text-xl transition-transform group-hover:translate-x-1">arrow_forward</span>
                         </a>
-                        <a href="https://wa.me/6281234567890" class="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-xl font-bold text-sm uppercase tracking-wider hover:bg-white/20 hover:border-white/50 transition-all">
+                        <a href="https://wa.me/<?php echo getWhatsAppNumber(); ?>" class="inline-flex items-center gap-3 px-10 py-5 bg-white/10 backdrop-blur-sm border border-white/30 text-white rounded-xl font-bold text-sm uppercase tracking-wider hover:bg-white/20 hover:border-white/50 transition-all">
                             <span class="material-symbols-outlined text-xl text-green-400">chat</span>
                             WhatsApp Kami
                         </a>

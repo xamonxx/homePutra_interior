@@ -483,6 +483,7 @@
 <script>
     // Inisialisasi variabel global untuk digunakan di file JS eksternal
     const HP_SITE_URL = '<?= SITE_URL ?>';
+    const HP_WHATSAPP_NUMBER = '<?= getWhatsAppNumber() ?>';
 </script>
 
 <!-- PDF Libraries (Lokal) -->

@@ -60,7 +60,7 @@
     </footer>
 
     <!-- WhatsApp Floating Button -->
-    <a id="whatsapp-btn" href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-10 right-10 z-50 group">
+    <a id="whatsapp-btn" href="https://wa.me/<?php echo getWhatsAppNumber(); ?>" target="_blank" class="fixed bottom-10 right-10 z-50 group">
         <div class="relative w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 transition-transform">
             <div class="pulse-ring" style="background-color: #25D366;"></div>
             <svg class="relative z-10" fill="currentColor" height="32" viewBox="0 0 16 16" width="32">

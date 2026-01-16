@@ -712,7 +712,9 @@ function sendToWhatsApp() {
     const customerName = nameInput ? nameInput.value : 'Pelanggan';
     const text = encodeURIComponent(`Halo Home Putra Interior! 👋\n\nSaya ${customerName}, saya telah menggunakan Kalkulator Estimasi di website dan tertarik dengan rincian berikut:\n\n${details}\n\nMohon informasi lebih lanjut untuk survey lokasi. Terima kasih! 🙏`);
 
-    window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+    // Gunakan nomor dari variabel global atau fallback ke default
+    const waNumber = typeof HP_WHATSAPP_NUMBER !== 'undefined' ? HP_WHATSAPP_NUMBER : '6283137554972';
+    window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
 }
 
 /**
