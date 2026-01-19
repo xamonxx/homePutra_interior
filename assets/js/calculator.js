@@ -46,7 +46,13 @@ async function initCalculator() {
         const response = await fetch(`${HP_SITE_URL}/api/calculator.php?action=init`);
         const result = await response.json();
         if (result.success) {
-            calcState.data = result.data;
+            // Map API response keys (snake_case) to JavaScript state keys (camelCase)
+            calcState.data = {
+                products: result.data.products || [],
+                materials: result.data.materials || [],
+                models: result.data.models || [],
+                additionalCosts: result.data.additional_costs || []
+            };
             renderProducts();
             renderModels();
             renderAdditionalCosts();
@@ -234,6 +240,7 @@ function updateLivePrice() {
 
     if (!livePrice) return;
 
+    // Fetch and display main price
     fetch(`${HP_SITE_URL}/api/calculator.php?action=get_price&product_id=${calcState.product}&material_id=${calcState.material}&model_id=${calcState.model}&location_type=${calcState.location}`)
         .then(res => res.json())
         .then(data => {
@@ -244,6 +251,7 @@ function updateLivePrice() {
 
     liveLocation.textContent = calcState.location === 'dalam_kota' ? 'Jawa Barat' : 'Luar Jawa Barat';
 
+    // Build comparison HTML
     const models = ['Minimalis', 'Semi Klasik', 'Klasik', 'Luxury'];
     let comparisonHtml = '';
     models.forEach((model, idx) => {
@@ -257,6 +265,7 @@ function updateLivePrice() {
     });
     priceComparison.innerHTML = comparisonHtml;
 
+    // Fetch prices for all models
     models.forEach((model, idx) => {
         fetch(`${HP_SITE_URL}/api/calculator.php?action=get_price&product_id=${calcState.product}&material_id=${calcState.material}&model_id=${idx + 1}&location_type=${calcState.location}`)
             .then(res => res.json())
@@ -298,7 +307,7 @@ function renderModels() {
             });
             this.nextElementSibling.classList.add('border-primary', 'bg-primary/10');
             this.nextElementSibling.classList.remove('border-white/10', 'bg-white/[0.02]');
-            updateLivePrice();
+            updateLivePrice(false); // Don't show loader when changing model
         });
     });
 }
@@ -309,6 +318,12 @@ function renderModels() {
 function renderAdditionalCosts() {
     const container = document.getElementById('additional-costs');
     if (!container) return;
+
+    // Check if additionalCosts exists and is an array
+    if (!calcState.data.additionalCosts || !Array.isArray(calcState.data.additionalCosts)) {
+        console.log('No additional costs data available');
+        return;
+    }
 
     const html = calcState.data.additionalCosts.map(c => `
         <label class="flex items-center gap-4 p-5 bg-white/[0.03] border border-white/10 rounded-xl cursor-pointer hover:border-primary/50 transition-all group">
@@ -546,7 +561,13 @@ function nextStep() {
                 return;
             }
 
+            // Pindahkan ke Step 2 terlebih dahulu agar loader terlihat
+            calcState.currentStep++;
+            showStep(calcState.currentStep);
+
+            // Kemudian load materials (loader akan muncul saat Step 2 sudah visible)
             loadMaterialsForProduct(calcState.product);
+            return;
         }
         calcState.currentStep++;
         showStep(calcState.currentStep);
